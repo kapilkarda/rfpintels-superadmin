@@ -1,0 +1,27 @@
+.active-side-item{
+    background-color: #4e63e1 !important;
+    /* color: #fcfcfc !important; */
+    font-weight: 600;
+    border-left: 5px solid #71e4c1;
+    /* border-top: 1px solid #71e4c1 ;
+    border-bottom: 1px solid #71e4c1; */
+}
+.nav-link-data{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 1.125rem 0 1.125rem 0;
+    /* color: #3e4b5b; */
+    color: #ffffff;
+    transition-duration: 0.45s;
+    transition-property: color;
+    -webkit-transition-property: color;
+    cursor: pointer;
+}
+.nav-link-data:hover{
+    color: #ffffff !important;
+    text-decoration: none;
+}
+.menu-icon-color{
+    color: #71e4c1 !important;
+}
