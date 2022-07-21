@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Company.css";
 
-import PaidSubscription from "./FreeSubscription";
+
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 // import { paidUserdata } from "../Redux/Action/UserAction";
 import { paidUserdata } from "../Redux/Action/UserAction";
@@ -13,6 +13,7 @@ const SubscriberManagment = () => {
   const handleTable = (e) => {
     setPlans(!plans);
   };
+  const {ListSubscriptionPaid } = useSelector((state) => state.paiduserdata); //RootReducer
   let dispatch = useDispatch();
   const paiduserdata = useSelector((state) => state.paiduserdata);
   console.log(paiduserdata, "lsjdflkjsdlfkpaiduserdata")
@@ -26,6 +27,13 @@ const SubscriberManagment = () => {
     console.log(`switch to ${checked}`);
     setPlans(!plans);
   };
+  
+
+
+
+  const isLoading = useSelector(state => state.paiduserdata && state.paiduserdata.loading);
+  console.log('isLoading',isLoading)
+
   return (
     <div>
       <div className="d-flex">
@@ -44,35 +52,9 @@ const SubscriberManagment = () => {
         >
           Paid Subscription
         </span>
-        {/* <div className="custom-control custom-switch submana-switch-div">
-          <input
-            type="checkbox"
-            className="custom-control-input bg-secondary submana-switch-btn"
-            id="customSwitch1"
-            onChange={handleTable}
-            defaultChecked
-          />
-          <label
-            className={
-              plans
-                ? "custom-control-label select-paid"
-                : "custom-control-label unselect-paid"
-            }
-            for="customSwitch1"
-          >
-            Trial Subscription
-          </label>
-        </div> */}
+       
         <Switch defaultChecked onChange={onChangeplan} className="switch-btn" />
-        {/* <span
-           className={
-            plans
-              ? "custom-control-label select-paid mt-3"
-              : "custom-control-label unselect-paid mt-3"
-          }
-        >
-         Trial Subscription
-        </span> */}
+       
         <span className={plans ? "unselected-trial-subscription": "selected-trial-subscription"}>Trial Subscription</span>
         <div className="p-2">
           <div>
@@ -97,11 +79,11 @@ const SubscriberManagment = () => {
           <div className="comp-table">
             <table className="table table-striped company-table">
               <thead className="thead-table">
-                <tr className="table-first-row">
+                <tr className="table-first-row text-center ">
                   <th scope="col" className="comp-name-th">
                     Company Name
                   </th>
-                  <th scope="col">Email</th>
+                  <th scope="col ">Email</th>
                   <th scope="col">Plan Type</th>
                   <th scope="col">Start Date</th>
                   <th scope="col" className="text-left">
@@ -110,8 +92,8 @@ const SubscriberManagment = () => {
                 </tr>
               </thead>
               <tbody>
-                {paiduserdata.paiduser &&
-                  paiduserdata.paiduser.map((item) => (
+              {ListSubscriptionPaid && !isLoading ?
+                  ListSubscriptionPaid.paiduser.map((item) => (
                     <tr key={item.id}>
                       <td className="comp-name-th">{}</td>
                       <td>{item.email}</td>
@@ -127,64 +109,10 @@ const SubscriberManagment = () => {
                         </button>
                       </td>
                     </tr>
-                  ))}
-
-                {/* <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>xyz@gmail.com</td>
-                  <td>Trial</td>
-                  <td>02/06/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>nvk@gmail.com</td>
-                  <td>Trial</td>
-                  <td>15/06/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">ABC Ltd.</td>
-                  <td>abc@gmail.com</td>
-                  <td>Trial</td>
-                  <td>02/06/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">TIBS Ltd.</td>
-                  <td>tibs@gmail.com</td>
-                  <td>Trial</td>
-                  <td>15/07/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>binford@gmail.com</td>
-                  <td>Trial</td>
-                  <td>15/06/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>binford@gmail.com</td>
-                  <td>Trial</td>
-                  <td>20/07/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>binford@gmail.com</td>
-                  <td>Trial</td>
-                  <td>20/07/2022</td>
-                  <td>06/08/2022</td>
-                </tr>
-                <tr>
-                  <td className="comp-name-th">Binford Ltd.</td>
-                  <td>binford@gmail.com</td>
-                  <td>Trial</td>
-                  <td>20/07/2022</td>
-                  <td>06/08/2022</td>
-                </tr> */}
+                  ))
+                  : " ListSubscriptionPaid please wait"
+                
+                }
               </tbody>
             </table>
           </div>
@@ -206,8 +134,7 @@ const SubscriberManagment = () => {
                     1 of 5
                   </a>
                 </li>
-                {/* <li className="page-item"><a className="page-link" href="#">2</a></li>
-    <li className="page-item"><a className="page-link" href="#">3</a></li> */}
+
               </ul>
               <ul className="pagination justify-content-center mt-2">
                 <li className="page-item">

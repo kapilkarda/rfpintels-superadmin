@@ -1,22 +1,22 @@
-import { PUT_COMPANYLIST_FAIL, PUT_COMPANYLIST_SUCCESS, PUT_COMPANYLIST_PENDING } from "../Constant/UserConstant";
+import { GET_COMPANY_DETAIL_ADD_PENDING, GET_COMPANY_DETAIL_ADD, GET_COMPANY_DETAIL_ADD_FAIL } from "../Constant/UserConstant";
 
 const initialstate = {
     editcompanydata : [],
 }
 
-export const EditCompanyList = (state= initialstate, action)=> {
+export const CompanyDetailAdd = (state= initialstate, action)=> {
       switch(action.type){
-        case PUT_COMPANYLIST_PENDING:
+        case GET_COMPANY_DETAIL_ADD_PENDING:
             return{
                 loading: true,
                 editcompanydata : [],
             }
-            case PUT_COMPANYLIST_SUCCESS: 
+            case GET_COMPANY_DETAIL_ADD: 
             return{
                 loading: false,
                 editcompanydata: action.payload,
             }
-            case PUT_COMPANYLIST_FAIL:
+            case GET_COMPANY_DETAIL_ADD_FAIL:
                 return{
                     loading: true,
                     errer: action.payload,

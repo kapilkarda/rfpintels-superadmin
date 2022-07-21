@@ -1,7 +1,11 @@
-import React from 'react';
-import "./Company.css";
+import React, { useState } from 'react';
+// import "./Company.css";
 
 const UserManaModal = ()=> {
+
+
+
+
     return (
         <>
          <div className="d-flex flex-row modal-firstdiv">
@@ -11,14 +15,28 @@ const UserManaModal = ()=> {
                         </h1>
                       </div>
                     </div>
+
                     <div className="modal-form-div">
                       <form>
+                        
                         <div className="form-group modal-input-data-div row mt-4">
                           <label
                             for="staticEmail"
                             className="col-sm-2 col-form-label ml-4"
+
                           >
                             Email Address
+
+                            <input
+                        placeholder='Email'
+                        type="email"
+                        {...register("email",
+                            {
+                                required: true,
+                                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                            })}
+                    />
+
                           </label>
                           <div className="col-sm-1 col modal-colan">:</div>
                           <div className="col-sm-8">
@@ -30,6 +48,9 @@ const UserManaModal = ()=> {
                             />
                           </div>
                         </div>
+
+
+
                         <div className="form-group modal-input-data-div row mt-4">
                           <label
                             for="staticEmail"
@@ -37,6 +58,7 @@ const UserManaModal = ()=> {
                           >
                             First Name
                           </label>
+
                           <div className="col-sm-1 col modal-colan">:</div>
                           <div className="col-sm-8">
                             <input
@@ -51,6 +73,7 @@ const UserManaModal = ()=> {
                           <label
                             for="staticEmail"
                             className="col-sm-2 col-form-label ml-4"
+                           
                           >
                             Last Name
                           </label>
@@ -68,6 +91,7 @@ const UserManaModal = ()=> {
                           <label
                             for="staticEmail"
                             className="col-sm-2 col-form-label ml-4 corporate-certification-div"
+                          
                           >
                             Title
                           </label>
@@ -85,7 +109,7 @@ const UserManaModal = ()=> {
                         <div className="form-group modal-input-data-div row mt-4">
                           <label
                             for="staticEmail"
-                            className="col-sm-2 col-form-label ml-4"
+                            className="col-sm-2 col-form-label ml-4" 
                           >
                            Office Number
                           </label>
@@ -96,6 +120,7 @@ const UserManaModal = ()=> {
                               className="form-control modal-firstinput"
                               id="inputPassword"
                               placeholder=""
+                              
                             />
                           </div>
                         </div>
@@ -144,3 +169,4 @@ const UserManaModal = ()=> {
     )
 };
 export default UserManaModal;
+

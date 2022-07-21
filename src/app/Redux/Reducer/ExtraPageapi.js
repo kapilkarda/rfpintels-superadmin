@@ -56,7 +56,7 @@ export const UpdateUserManagment = (
       };
       case PUT_USERMANAGMENT_FAIL:
         return {
-            loading: false,
+            loading: true,
             errer: action.payload,
         }
         default:
@@ -80,7 +80,7 @@ export const ExtraPageapi = (state = intialstate, action) => {
       break;
     case GET_EXTRAPAGE_FAIL:
       return {
-        loading: false,
+        loading: true,
         errer: action.payload,
       };
     default:

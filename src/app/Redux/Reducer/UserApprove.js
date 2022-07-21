@@ -1,29 +1,29 @@
 import * as types from "../Constant/UserConstant";
 
-
 const initialstate = {
     users : [],
     loading:false
 
 }
 
-const UserReducers = (state = initialstate , action) => {
+
+const UserApprove = (state=[],action) => {
     switch(action.type) {
-        case types.GET_USERS_PENDING :
+        case types.GET_USERS_APPROVE_PENDING :
             return{
                 ...state,
                 users:action.payload,
                 loading :true,
             };
 
-        case types.GET_USERS :
+        case types.GET_APPROVE_USERS :
             return{
                 ...state,
                 users:action.payload,
                 loading :false,
             };
 
-        case types.GET_USERS_FAIL :
+        case types.GET_USERS_APPROVE_FAIL :
             return{
                 ...state,
                 users:action.payload,
@@ -34,5 +34,4 @@ const UserReducers = (state = initialstate , action) => {
         }
     };
 
-export default  UserReducers;
-
+export default  UserApprove;

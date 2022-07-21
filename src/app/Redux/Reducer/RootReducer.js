@@ -7,6 +7,13 @@ import UserList from "./UserList";
 import { ExtraPageapi, UpdateUserManagment } from "./ExtraPageapi";
 import {EditCompanyList}  from "./EditCompanyList";
 import { addUserUserManagment } from "../Action/UserAction";
+import { userApproved } from "../Action/UserAction";
+import UserDeny from "./UserDeny";
+import { CompanyDetailAdd } from "./CompanyDetailAdd";
+import GetAllUserData from "./GetAllUserData";
+import UserRemoveData from "./UserRemoveData";
+
+
  
 const RootReducer = combineReducers ({
   
@@ -18,6 +25,18 @@ const RootReducer = combineReducers ({
     editcompanylistdata : EditCompanyList,
     updateusermanagmentdata : UpdateUserManagment,
     adduserbtndata:  addUserUserManagment,
+    userApproveded : userApproved,
+    userDenys : UserDeny, 
+    usernamecompany: CompanyDetailAdd,
+    getAllUserDatas: GetAllUserData,
+    getAllDataRemove: UserRemoveData,
+
+
+   
+
+    // userApproved
+
+
 })
 
 export default RootReducer;

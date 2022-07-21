@@ -1,7 +1,9 @@
 import React, { Component,Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from '../app/shared/Spinner';
-// import SubscriberManagment from './managment/SubscriberManagment';
+import EditCompanyList from './managment/EditCompanyList';
+
+// import SubscriberManagment from './managment/SubscriberManagment'
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
 
@@ -35,13 +37,13 @@ const BlankPage = lazy(() => import('./general-pages/BlankPage'));
 
 
 
-
 class AppRoutes extends Component {
   render () {
     return (
       <Suspense fallback={<Spinner/>}>
         <Switch>
           <Route exact path="/dashboard" component={ Dashboard } />
+          <Route exact path="/EditCompanyList" component = { EditCompanyList} />
 
 
           <Route path="/basic-ui/buttons" component={ Buttons } />

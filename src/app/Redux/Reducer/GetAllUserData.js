@@ -1,42 +1,35 @@
 import * as types from "../Constant/UserConstant";
-
-const initialstate = {
-  
-    userlist : [],
+const initialstate = {  
+    getuserdata : [],
     loading:false
-
 }
 
-const UserList = (state = initialstate, action ) => {
-    console.log(action.payload, "actishuf")
+const GetAllUserData = (state = initialstate, action ) => {
+    console.log(action, "actishuf1564")
     switch(action.type) {
-        case types.GET_USER_LIST_PENDING :
+        case types.GET_ALL_USER_DATA_PENDING :
             return{
                 ...state,
-                userlist: action.payload,
+                getuserdata:[],
                 loading: true,
             };
         
-        case types.GET_USER_LIST :
+        case types.GET_ALL_USER_DATA_SUCCESS :
             return{
                 ...state,
-                userlist: action.payload,
+                getuserdata: action.resp,
                 loading: false,
             };
 
-        case types.GET_USER_LIST_FAIL :
+        case types.GET_ALL_USER_DATA_FAILED :
             return{
                 ...state,
-                userlist: action.payload,
+                getuserdata: action.payload,
                 loading: true,
             };
-
-
-
-
             default:
                 return state;
     }
 };
 
-export default UserList;
+export default GetAllUserData;
