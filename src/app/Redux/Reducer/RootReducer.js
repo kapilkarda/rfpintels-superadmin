@@ -12,6 +12,7 @@ import UserDeny from "./UserDeny";
 import { CompanyDetailAdd } from "./CompanyDetailAdd";
 import GetAllUserData from "./GetAllUserData";
 import UserRemoveData from "./UserRemoveData";
+import EditManagementUser from "./EditManagementUser";
 
 
  
@@ -30,6 +31,12 @@ const RootReducer = combineReducers ({
     usernamecompany: CompanyDetailAdd,
     getAllUserDatas: GetAllUserData,
     getAllDataRemove: UserRemoveData,
+    Editmanagementuser: EditManagementUser,
+
+
+ 
+    
+
 
 
    

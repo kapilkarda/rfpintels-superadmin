@@ -1,6 +1,7 @@
 import * as types from "../Constant/UserConstant";
 
 import axios from "axios";
+import { manageState } from "react-select/dist/stateManager-55f1941f.cjs.prod";
 
 const FreeSubscription = (freeuser) => ({
   type: types.GET_SUBSCRIPTION,
@@ -352,3 +353,35 @@ export const UserDataRemove = (id) => async (dispatch) => {
     });
   }
 };
+
+
+
+export const EditNewData = (id) => async (dispatch) => {
+  console.log(id, "anillodha")
+ 
+  const tokens = localStorage.getItem("token");
+  try {
+    dispatch({ type: types.GET_USER_DATA_EDIT_PENDING });
+    const res = await axios.put(
+      `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/updateAddUser/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${tokens}`,
+        },
+      }
+    );
+    console.log(res , "anillodhdjjsuf")
+   
+    dispatch({ type: types.GET_USER_DATA_EDIT_SUCCESS, payload: res });
+  } catch (error) {
+    console.log("error",error)
+    dispatch({
+      type: types.GET_USER_DATA_EDIT_FAILED,
+      payload:
+        error.data && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+

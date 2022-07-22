@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as types from "../Redux/Constant/UserConstant";
 import "./Company.css";
-import "./Styles.css";
 import Modal from "react-modal";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 // import { styled } from "@mui/material/styles";
@@ -10,13 +9,20 @@ import TableRow from "@mui/material/TableRow";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserUserManagment,
-  EditNewData,
   getAllUserData,
   UserDataRemove,
 } from "../Redux/Action/UserAction";
 import { Oval } from "react-loader-spinner";
-import "antd/dist/antd.css";
-import { Button } from "antd";
+
+import 'antd/dist/antd.css';
+
+import { Button } from 'antd';
+
+
+
+
+
+
 const customStyles = {
   content: {
     top: "50%",
@@ -31,9 +37,7 @@ const customStyles = {
     height: "70vh",
   },
 };
-
-
-
+Modal.setAppElement("#root");
 const UserManagment = () => {
   const dispatch = useDispatch();
   const userManagmenttabData = "hello";
@@ -43,49 +47,21 @@ const UserManagment = () => {
   const deletedRes = useSelector((state) => state.getAllDataRemove.removeuser);
   console.log("deletedRes", deletedRes);
   const [isOpen, setIsOpen] = useState(false);
-  const [isPageOpen, setisPageOpen] = useState(false);
-
+  const [isOpen1, setIsOpen1] = useState(false);
   const [updateUserdata, setUpdateUserdata] = useState({});
   const [userModalInput, setUserModalInput] = useState("");
   const [index, setIndex] = useState(0);
-  const [indexed, setIndexed] = useState(0);
-
   const [addUserbtndata, setAddUserbtndata] = useState({});
-  const [eidtData, setEditData] = useState({});
-  console.log("eidtData ===>>>",eidtData)
-
-  const toggleModal = (index) => {
+  function toggleModal() {
     setIsOpen(!isOpen);
+  }
+  const toggleModalUser = (index) => {
+    setIsOpen1(!isOpen1);
     setIndex(index);
   };
-
-  const toggleModaled = (indexed) => {
-    setisPageOpen(!isPageOpen);
-    setIndexed(indexed);
-  };
-
   const handlelclicked = (item) => {
     dispatch(UserDataRemove(item));
   };
-
-  
-const[email,Setmail] =  useState([])
-const[fname,Setfname] =  useState("");
-const[lname,Setlname] = useState("");
-const[title,Settitle] = useState("");
-const[officeNumber,SetofficeNumber] = useState("");
-const[cellNumber, setCellNumber] =useState("");
-const [licenceType, setLicenceType] = useState("");
-
-
-
-
-
-
-
-
-
-
   function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
   }
@@ -109,10 +85,9 @@ const [licenceType, setLicenceType] = useState("");
     console.log(index, "updateUserdata-index");
     setUpdateUserdata(userManagmenttabData[index]);
   };
-  // useEffect(() => {
-  //   editUserManagement(index);
-  // }, [isOpen1]);
-
+  useEffect(() => {
+    editUserManagement(index);
+  }, [isOpen1]);
   const handleAddInput = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -131,11 +106,9 @@ const [licenceType, setLicenceType] = useState("");
     }
   };
   const isLoading = useSelector((state) => state.getAllUserDatas.loading);
-  console.log("isLoading.....", isLoading);
+  console.log("isLoading", isLoading);
   const [getAllUserDatas, setGetallUserdata] = useState();
   const userss = useSelector((state) => state.getAllUserDatas);
-  console.log(userss, "userss");
-
   useEffect(() => {
     if (userss && userss.getuserdata && userss.getuserdata.data) {
       setGetallUserdata(userss.getuserdata.data);
@@ -153,25 +126,20 @@ const [licenceType, setLicenceType] = useState("");
     }
   }, [deletedRes]);
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-
-  const [ data, setData ] = useState(""); 
-
-  const handleInput = (e) => {
-    e.preventDefault();
-   const name = e.target.name;
-   const value = e.target.value;
- setData({...data, [name]: value});    
-}
-
-
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
-    dispatch(EditNewData(data));
-
+  const showModal = () => {
+    setIsModalVisible(true);
   };
-
-
+  
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  
 
   return (
     <>
@@ -212,6 +180,8 @@ const [licenceType, setLicenceType] = useState("");
                       name="email"
                       onChange={handleAddInput}
                       id="inputPassword"
+                      // value={email}
+                      // placeholder="nevaeh.simmons@example.com"
                     />
                   </div>
                 </div>
@@ -314,7 +284,7 @@ const [licenceType, setLicenceType] = useState("");
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-info">
+                <button type="submit" className="btn modal-cancel-btn">
                   Add User
                 </button>
               </div>
@@ -340,7 +310,6 @@ const [licenceType, setLicenceType] = useState("");
           </div>
         </div>
       </div>
-
       <div className="comp-table-div1">
         <div className="comp-table1"></div>
       </div>
@@ -371,245 +340,36 @@ const [licenceType, setLicenceType] = useState("");
                       <td>{item.companyName}</td>
                       <td>
                         <div className="d-flex justify-content-center ">
-                          {/* <Button
+                          {/* <button
                             type="button"
                             className="btn btn-secondary comp-edit-btn m-1"
-                            onClick={showModal}
-                          >
-                            Edit
-                          </Button> */}
-
-                          <button
-                            className="btn btn-secondary comp-edit-btn m-1"
-                            onClick={toggleModaled}
+                            onClick={() => {
+                              toggleModalUser(index);
+                            }}
                           >
                             Edit
                           </button>
+                           */}
+                          <Button type="button"  className="btn btn-secondary comp-edit-btn m-1" onClick={showModal}>
+      Edit
+      </Button>
+      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
 
-                          <Modal
-                            isOpen={isPageOpen}
-                            onRequestClose={toggleModaled}
-                            contentLabel="My dialog"
-                            className="mymodal"
-                            overlayClassName="myoverlay"
-                            closeTimeoutMS={500}
-                          >
-                            <form onSubmit={e => handleEditSubmit(e)}>
-                              <div>Edit User</div>
-                              <hr></hr>
-                              <div className="container">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      Email Address
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={email}
-                                     
-                                      class="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="enter your email address"
-                                      onChange={handleInput}
-                                      defaultValue={getAllUserDatas[0].email}
-                                      // onChange={e => onInputChange(e)}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
+                         
 
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                      // onChange={handleinputFirstName}
-                                    >
-                                      First Name
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={firstName}
-                                     
-                                     
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="first name"
-                                      defaultValue={getAllUserDatas[0].firstName}
-                                      onChange={handleInput}
-                                      // onChange={e => onInputChange(e)}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      Last Name
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={lastName}
-                                     
-                                  
 
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="Last Name"
-                                      defaultValue={getAllUserDatas[0].lastName} 
-                                      onChange={handleInput}
-                                      // onChange={e => onInputChange(e)}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
 
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      Title
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-1">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={title}
-                                      
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="enter your title"
-                                     
-                                      onChange={handleInput}
-                                   
-                                      defaultValue={getAllUserDatas[0].title}
-                                      // onChange={e => onInputChange(e)}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
 
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      Office Number
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={officeNumber}
-                                    
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="Enter your Mobile Number"
-                                      
-                                      defaultValue={
-                                        getAllUserDatas[0].officeNumber
-                                      }
-                                      // onChange={e => onInputChange(e)}
-                                    
-                                      onChange={handleInput}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      Cell number
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={cellNumber}
-                                     
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="Enter your cell Number"
-                                    
-                                      // onChange={e => onInputChange(e)}
-                                      onChange={handleInput}
-                                      defaultValue={getAllUserDatas[0].cellNumber}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
 
-                              <div className="container mt-3">
-                                <div className="row">
-                                  <div className="col-sm-2">
-                                    <label
-                                      for="exampleFormControlInput1"
-                                      class="form-label mt-2"
-                                    >
-                                      License Type
-                                    </label>
-                                  </div>
-                                  <div className="col-sm-1 mt-2">:</div>
-                                  <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      // value={licenceType}
-                                     
-                                      className="form-control"
-                                      id="exampleFormControlInput1"
-                                      placeholder="Enter your cell Number"
-                                      onChange={handleInput}
-                                      // onChange={e => onInputChange(e)}
-                                      defaultValue={getAllUserDatas[0].cellNumber}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
 
-                              <div className="text-right mt-2">
-                                <button type="submit" className="btn">
-                                  cancel
-                                </button>
-                                <button
-                                  type="submit"
-                                  className="btn btn-info"
-                                  // onClick={() => handleEditSubmit(item.id)}
-                                >
-                                  Save
-                                </button>
-                              </div>
-                            </form>
-                          </Modal>
 
+
+
+                          
                           <button
                             type="button"
                             className="btn usermana-dele-btn m-1"
@@ -631,6 +391,15 @@ const [licenceType, setLicenceType] = useState("");
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
       <div>
         <nav aria-label="Page navigation example">
           <div className="d-flex justify-content-between">
