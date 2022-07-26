@@ -136,7 +136,7 @@ const FreeSubscription = () => {
           </table>
         </div>
         <nav aria-label="Page navigation example">
-          <div class="d-flex justify-content-between">
+          <div className="d-flex justify-content-between">
             <ul className="pagination justify-content-center mt-2">
               <li className="page-item">
                 <a className="page-link text-left previous-keyword" href="#">

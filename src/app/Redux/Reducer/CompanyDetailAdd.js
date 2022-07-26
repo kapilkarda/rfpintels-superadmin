@@ -1,27 +1,40 @@
-import { GET_COMPANY_DETAIL_ADD_PENDING, GET_COMPANY_DETAIL_ADD, GET_COMPANY_DETAIL_ADD_FAIL } from "../Constant/UserConstant";
+import * as types from "../Constant/UserConstant";
 
 const initialstate = {
-    editcompanydata : [],
+  
+    companylist : [],
+    loading:false
+
 }
 
-export const CompanyDetailAdd = (state= initialstate, action)=> {
-      switch(action.type){
-        case GET_COMPANY_DETAIL_ADD_PENDING:
+const UserReducers = (state = initialstate, action ) => {
+    switch(action.type) {
+        case types.GET_USERS_PENDING :
             return{
+                ...state,
+                companylist: action.payload,
                 loading: true,
-                editcompanydata : [],
-            }
-            case GET_COMPANY_DETAIL_ADD: 
+            };
+
+        case types.GET_USERS :
             return{
+                ...state,
+                companylist: action.payload,
                 loading: false,
-                editcompanydata: action.payload,
-            }
-            case GET_COMPANY_DETAIL_ADD_FAIL:
-                return{
-                    loading: true,
-                    errer: action.payload,
-                }
-                default:
-                    return state;
-      }
-}
+            };
+
+        case types.GET_USERS_FAIL :
+            return{
+                ...state,
+                companylist: action.payload,
+                loading:true,
+            };
+
+
+
+            default:
+                return state;
+    }
+};
+
+export default UserReducers;

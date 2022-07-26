@@ -1,5 +1,8 @@
+
 import React, { Component,Suspense, lazy } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import {Switch ,Route,Redirect} from "react-router-dom";
+
+
 import Spinner from '../app/shared/Spinner';
 import EditCompanyList from './managment/EditCompanyList';
 
@@ -41,7 +44,7 @@ class AppRoutes extends Component {
   render () {
     return (
       <Suspense fallback={<Spinner/>}>
-        <Switch>
+   <Switch>
           <Route exact path="/dashboard" component={ Dashboard } />
           <Route exact path="/EditCompanyList" component = { EditCompanyList} />
 
