@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 const UserManaModal = ()=> {
 
 
-
-
     return (
         <>
          <div className="d-flex flex-row modal-firstdiv">
