@@ -62,6 +62,20 @@ class AppRoutes extends Component {
               path={`${AUTH_PREFIX_PATH}/forget-password`}
               component={lazy(() => import(`./authentication/forget-password`))}
             />
+            <Route
+              path={`${AUTH_PREFIX_PATH}/validation`}
+              component={lazy(() => import(`./authentication/validation`))}
+            />
+            <Route
+              path={`${AUTH_PREFIX_PATH}/resetpassword`}
+              component={lazy(() =>
+                import(`./authentication/ResetPassword/ResetPassword`)
+              )}
+            />
+            <Route
+              path={`${AUTH_PREFIX_PATH}/loginValidation`}
+              component={lazy(() => import(`./authentication/loginValidation`))}
+            />
 
             <Route exact path="/EditCompanyList" component={EditCompanyList} />
 
@@ -90,7 +104,7 @@ class AppRoutes extends Component {
             <Route path="/error-pages/error-500" component={Error500} />
             <Route path="/general-pages/blank-page" component={BlankPage} />
 
-            <Redirect to="auth/login" />
+            <Redirect to="auth/login-1" />
           </Switch>
         </Suspense>
       </>

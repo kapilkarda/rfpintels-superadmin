@@ -16,7 +16,7 @@ body {
 }
 
 .page-body-wrapper {
-  min-height: calc(100vh - #{$navbar-height});
+  min-height: calc(111vh - #{$navbar-height});
 
   @include display-flex();
   @include flex-direction(row);

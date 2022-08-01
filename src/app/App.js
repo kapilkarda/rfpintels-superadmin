@@ -10,6 +10,7 @@ import Footer from './shared/Footer';
 import { withTranslation } from "react-i18next";
 import LoginOne from './authentication/login-1';
 import LoginRoute from './LoginRoute';
+import ForgotPassword from './authentication/forgot-password';
 
 class App extends Component {
   state = {}
@@ -22,23 +23,26 @@ class App extends Component {
     let sidebarComponent = !this.state.isFullPageLayout ? <Sidebar/> : '';
     let SettingsPanelComponent = !this.state.isFullPageLayout ? <SettingsPanel/> : '';
     let footerComponent = !this.state.isFullPageLayout ? <Footer/> : '';
-    console.log('navbarComponent',window.location.pathname);
+
+
     return (
       <div className="container-scroller">
-        {window.location.pathname !== '/auth/login'? navbarComponent : ''}
+        {/* {window.location.pathname !== '/auth/login'? navbarComponent : '' } */}
+        {window.location.pathname !== '/auth/login-1' &&  window.location.pathname !== '/auth/forgot-password' &&    window.location.pathname !== '/auth/resetpassword'   ? navbarComponent :  '' }
+      
         {/* { navbarComponent } */}
         <div className="container-fluid page-body-wrapper">
-        {window.location.pathname !== '/auth/login'? sidebarComponent : ''}
+        {window.location.pathname !== '/auth/login-1'  && window.location.pathname !== '/auth/forgot-password' &&  window.location.pathname !== '/auth/resetpassword'       ? sidebarComponent : ''}
           {/* { sidebarComponent } */}
           <div className="main-panel">
             <div className="content-wrapper">
               <AppRoutes/>
-              {window.location.pathname !== '/auth/login'? SettingsPanelComponent: ''}
+              {window.location.pathname !== '/auth/login-1' && window.location.pathname !== '/auth/forgot-password'  &&  window.location.pathname !== '/auth/resetpassword' ? SettingsPanelComponent: ''}
             
 
               {/* { SettingsPanelComponent } */}
             </div>
-            {window.location.pathname !== '/auth/login'? footerComponent: ''}
+            {window.location.pathname !== '/auth/login-1'  && window.location.pathname !== '/auth/forgot-password'  &&  window.location.pathname !== '/auth/resetpassword' ? footerComponent: ''}
             {/* { footerComponent } */}
           </div>
         </div>

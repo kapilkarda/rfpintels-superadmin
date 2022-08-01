@@ -4,8 +4,10 @@ import React from "react";
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from '@ant-design/icons';
 import { CheckCircleOutlined, LeftOutlined, LockOutlined } from '@ant-design/icons';
-// import { showAuthMessage, showLoading, hideAuthMessage, signIn } from 'redux/actions/Auth';
+
 import { useHistory } from "react-router-dom";
+// import { verified, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
+
 
 const backgroundURL = '/img/others/Frame.png'
 const backgroundStyle = {
@@ -16,9 +18,9 @@ const backgroundStyle = {
 	position: 'relative',
 }
 
-const LoginValidationForm = (props) => {
+const ValidationForm = (props) => {
 
-    const {
+	const {
 		showLoading,
 		loading,
 	} = props
@@ -26,26 +28,25 @@ const LoginValidationForm = (props) => {
 	const history = useHistory();
 
 	// const theme = useSelector(state => state.theme.currentTheme)
-
 	const [form] = Form.useForm();
 
 	const onSend = values => {
-        showLoading()
-		const loginotpRequest = {
+		showLoading();
+		const otpRequest = {
 			email: props.location.state,
 			otp: values.otp,
 		}
 		const allRequest = {
-			request: loginotpRequest,
+			request: otpRequest,
 			route: history,
 		}
-		props.signIn(allRequest)
+		props.verified(allRequest);
 	};
 
 	const theme = 'light' ;
 
 	return (
-		<>
+		<React.Fragment>
 			<div className={`h-100 ${theme === 'light' ? 'bg-white' : ''}`}>
 				<Row justify="center" className="align-items-stretch h-100">
 					<Col xs={0} sm={0} md={0} lg={12}>
@@ -57,9 +58,7 @@ const LoginValidationForm = (props) => {
 										<p className="text-white">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
 										<Row className="justify-content-between">
 											<p className="text-white">Vincent Obi <CheckCircleOutlined className="bg-success" /></p>
-											<p className="text-white"><img className="img-fluid h-100" src="/img/others/Vector 1.png" alt="" />  
-											
-											</p>
+											<p className="text-white"><img className="img-fluid h-100" src="/img/others/Vector 1.png" alt="" /></p>
 										</Row>
 									</div>
 
@@ -86,7 +85,7 @@ const LoginValidationForm = (props) => {
 									</div>
 									<Row justify="left">
 										<Col xs={24} sm={24} md={20} lg={20}>
-											<Form form={form} layout="vertical" name="forget-password" onFinish={onSend}>
+											<Form form={form} layout="vertical" name="forget-password" onFinish={onSend} >
 												<Form.Item
 													name="otp"
 													label="OTP*"
@@ -115,7 +114,7 @@ const LoginValidationForm = (props) => {
 					</Col>
 				</Row>
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 
@@ -126,12 +125,12 @@ const LoginValidationForm = (props) => {
 // }
 
 // const mapDispatchToProps = {
-// 	signIn,
+// 	verified,
 // 	showAuthMessage,
 // 	hideAuthMessage,
 // 	showLoading
 // }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginValidationForm)
+//  export default connect(mapStateToProps, mapDispatchToProps)(ValidationForm)
 
-export default  LoginValidationForm
+export default  ValidationForm

@@ -4,12 +4,15 @@ import { connect } from 'react-redux'
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from '@ant-design/icons';
 import { CheckCircleOutlined, LeftOutlined, } from '@ant-design/icons';
-import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
-import { useHistory } from "react-router-dom";
+// import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
+import { Link, useHistory } from "react-router-dom";
+import images3  from "../../../assets/img/others/Frame.png"
+import { width } from "@mui/system";
+
 
 const backgroundURL = '/img/others/Frame.png'
 const backgroundStyle = {
-	backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${backgroundURL})`,
+	backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
 	opacity: '0.9',
@@ -26,7 +29,7 @@ const ResetPassword = (props) => {
 
 	const history = useHistory();
 
-	const theme = useSelector(state => state.theme.currentTheme)
+	// const theme = useSelector(state => state.theme.currentTheme)
 	// console.log( "propssjdfklsjdftheme",theme)
 	const [form] = Form.useForm();
    
@@ -68,7 +71,7 @@ const ResetPassword = (props) => {
 		
 	};
 
-
+	const theme = 'light' ;
 	return (
 		<React.Fragment>
 			<div className={`h-100 ${theme === 'light' ? 'bg-white' : ''}`}>
@@ -98,8 +101,8 @@ const ResetPassword = (props) => {
 								</Col>
 
 							</Row>
-							<Row justify="center" className="mt-5 text-center">
-								<Col xs={24} sm={24} md={20} lg={16} xl={8}>
+							<Row justify="center" className="mt-5 ">
+								<Col xs={24} sm={24} md={20} lg={16} xl={24}>
 
 
 									<div className="text-center">
@@ -107,9 +110,9 @@ const ResetPassword = (props) => {
 										<p className="mb-4">Enter your email</p>
 										<h5 className="text-center">{props.location?props.location.state:''}</h5>
 									</div>
-									<Row justify="left">
-										<Col xs={24} sm={24} md={20} lg={20}>
-											<Form form={form} layout="vertical" name="forget-password" onFinish={onSend}>
+									<Row >
+										<Col xs={24} sm={24} md={24} lg={16} className = "mx-5">
+											<Form form={form} layout="vertical" name="forget-password" onFinish={onSend} >
 												<Form.Item
 													name="newpassword"
 													label="New password*"
@@ -121,7 +124,7 @@ const ResetPassword = (props) => {
 															},
 														]
 													}>
-													<Input placeholder="Enter your password" prefix={<MailOutlined className="text-primary" />} />
+													<Input placeholder="Enter your password" prefix={<MailOutlined className="text-primary"  />} className = "py-3" />
 												</Form.Item>
 												<Form.Item
 													name="confirmpassword"
@@ -134,12 +137,14 @@ const ResetPassword = (props) => {
 															},
 														]
 													}>
-													<Input placeholder="Enter confirm password" prefix={<MailOutlined className="text-primary" />} />
+													<Input placeholder="Enter confirm password" prefix={<MailOutlined className="text-primary" />}  className = "py-3" />
 												</Form.Item>
 												{/* <p>OTP is send in your Registration email ID & Mobile number</p> */}
 												<Form.Item>
 													{/* <Button loading={loading} type="primary" htmlType="submit" block>{loading ? 'Sending' : 'Continue'}</Button> */}
-                                                    <Button loading={loading} type="primary" htmlType="submit" block >Send</Button>
+                                                    <Button loading={loading} type="primary" htmlType="submit" block  className="py-4"  >
+														<Link to= "/auth/login-1"> Sent  </Link>
+														</Button>
 												</Form.Item>
 												{/* <p><LockOutlined />&nbsp; Your Info is safely secured</p> */}
 											</Form>
@@ -157,16 +162,16 @@ const ResetPassword = (props) => {
 }
 
 
-const mapStateToProps = ({ auth }) => {
-	const { loading, message, showMessage, token, redirect } = auth;
-	return { loading, message, showMessage, token, redirect }
-}
+// const mapStateToProps = ({ auth }) => {
+// 	const { loading, message, showMessage, token, redirect } = auth;
+// 	return { loading, message, showMessage, token, redirect }
+// }
 
-const mapDispatchToProps = {
-	resetpassword,
-	showAuthMessage,
-	hideAuthMessage,
-	showLoading
-}
+// const mapDispatchToProps = {
+// 	resetpassword,
+// 	showAuthMessage,
+// 	hideAuthMessage,
+// 	showLoading
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword)
+export default ResetPassword
