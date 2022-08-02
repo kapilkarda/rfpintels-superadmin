@@ -1,4 +1,5 @@
-import React from "react";
+import React , {useState} from "react";
+
 
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
@@ -7,6 +8,7 @@ import PropTypes from "prop-types";
 
 // import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
+
 
 
 export const LoginForm = (props) => {
@@ -41,18 +43,21 @@ export const LoginForm = (props) => {
     left: 238,
 }
 
-// const [email, setEmail] = useState("kkarda@manvish.com");
-// const [password, setpassword] = useState("Kapil@123");
+const [email, setEmail] = useState("");
+
+const [password, setpassword] = useState("");
 
 
-
-
-
- const RedirectSupertadmin = () =>  {
+ const RedirectSupertadmin = (email, password) =>  {
+  console.log("email" ,email)
+  console.log("password" ,password)
+if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
   history.push ("/management/CompanyManage")
-
- }
-
+ 
+} else {
+  alert ("incorrect password")
+}
+}
 
 
   const onLogin = (values) => {
@@ -114,6 +119,12 @@ export const LoginForm = (props) => {
           <Input
             prefix={<MailOutlined className="text-primary rounded-pill" />}
             className="py-3 "
+            type="text" 
+            name="email" 
+            onChange={(e) => setEmail(e.target.value)}
+           
+            value={email}
+
 
           />
         </Form.Item>
@@ -131,7 +142,7 @@ export const LoginForm = (props) => {
               {showForgetPassword && (
                 <span
                   onClick={() => onForgetPasswordClick}
-                  className="cursor-pointer font-size-sm font-weight-normal text-muted  "
+                  className="cursor-pointer font-size-sm font-weight-normal text-muted "
                 >
                   Forget Password?
                 </span>
@@ -148,6 +159,10 @@ export const LoginForm = (props) => {
           <Input.Password
             prefix={<LockOutlined className="text-primary" />}
             className="py-3  "
+            type="password" 
+            name="email" 
+            value={password}
+            onChange={(e) => setpassword(e.target.value)}
           />
         </Form.Item>
         <Form.Item
@@ -164,7 +179,7 @@ export const LoginForm = (props) => {
             block
             loading={loading}
             className = "py-4"
-             onClick={RedirectSupertadmin}
+             onClick={()=>RedirectSupertadmin(email, password)}
           >
             <span  style={TodoComponent} >  Login </span>
 
