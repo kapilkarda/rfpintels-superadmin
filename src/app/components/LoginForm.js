@@ -1,15 +1,12 @@
-import React , {useState} from "react";
-
+import React, { useState } from "react";
 
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
-
-
 
 export const LoginForm = (props) => {
   let history = useHistory();
@@ -29,36 +26,27 @@ export const LoginForm = (props) => {
     email: "",
     password: "",
   };
-  
-
-
 
   const TodoComponent = {
-    position: 'absolute',
+    position: "absolute",
     bottom: 13,
-    left : 192
-  }
- const forgetstyle = {
-  position: 'relative',
+    left: 192,
+  };
+  const forgetstyle = {
+    position: "relative",
     left: 238,
-}
+  };
 
-const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
 
-const [password, setpassword] = useState("");
-
-
- const RedirectSupertadmin = (email, password) =>  {
-  console.log("email" ,email)
-  console.log("password" ,password)
-if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
-  history.push ("/management/CompanyManage")
- 
-} else {
-  alert ("incorrect password")
-}
-}
-
+  const RedirectSupertadmin = (email, password) => {
+    if (email === "kkarda@manvish.com" && password === "Kapil@123") {
+      history.push("/management/CompanyManage");
+    } else {
+      alert("incorrect password");
+    }
+  };
 
   const onLogin = (values) => {
     showLoading();
@@ -119,13 +107,10 @@ if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
           <Input
             prefix={<MailOutlined className="text-primary rounded-pill" />}
             className="py-3 "
-            type="text" 
-            name="email" 
+            type="text"
+            name="email"
             onChange={(e) => setEmail(e.target.value)}
-           
             value={email}
-
-
           />
         </Form.Item>
         <Form.Item
@@ -134,8 +119,12 @@ if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
           label={
             <div className="">
               <span>Password</span>
-              <span className=" justify-content-end" >
-                <a href="/auth/forgot-password" className="text-end"   style={forgetstyle}>
+              <span className=" justify-content-end">
+                <a
+                  href="/auth/forgot-password"
+                  className="text-end"
+                  style={forgetstyle}
+                >
                   (Forget Password?)
                 </a>
               </span>
@@ -159,8 +148,8 @@ if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
           <Input.Password
             prefix={<LockOutlined className="text-primary" />}
             className="py-3  "
-            type="password" 
-            name="email" 
+            type="password"
+            name="email"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
           />
@@ -178,12 +167,10 @@ if (email === "kkarda@manvish.com" &&  password ===  "Kapil@123") {
             htmlType="submit"
             block
             loading={loading}
-            className = "py-4"
-             onClick={()=>RedirectSupertadmin(email, password)}
+            className="py-4"
+            onClick={() => RedirectSupertadmin(email, password)}
           >
-            <span  style={TodoComponent} >  Login </span>
-
-     
+            <span style={TodoComponent}> Login </span>
           </Button>
         </Form.Item>
         {otherSignIn ? renderOtherSignIn : null}
