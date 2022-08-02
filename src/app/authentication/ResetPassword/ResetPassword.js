@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { connect } from "react-redux";
+
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
 // import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
 import { Link, useHistory } from "react-router-dom";
 import images3 from "../../../assets/img/others/Frame.png";
-import { width } from "@mui/system";
 
-const backgroundURL = "/img/others/Frame.png";
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
   backgroundRepeat: "no-repeat",
@@ -17,7 +14,11 @@ const backgroundStyle = {
   opacity: "0.9",
   position: "relative",
 };
-
+const TodoComponenting = {
+  position: 'absolute',
+  bottom: 13,
+  left : 192
+  } 
 const ResetPassword = (props) => {
   // console.log( "propssjdfklsjdf",props)
   const [userData, setUserData] = useState({});
@@ -160,9 +161,8 @@ const ResetPassword = (props) => {
                             className="py-3"
                           />
                         </Form.Item>
-                        {/* <p>OTP is send in your Registration email ID & Mobile number</p> */}
+
                         <Form.Item>
-                          {/* <Button loading={loading} type="primary" htmlType="submit" block>{loading ? 'Sending' : 'Continue'}</Button> */}
                           <Button
                             loading={loading}
                             type="primary"
@@ -170,10 +170,9 @@ const ResetPassword = (props) => {
                             block
                             className="py-4"
                           >
-                            <Link to="/auth/login-1"> Sent </Link>
+                            <Link to="/auth/login-1"  style={TodoComponenting}> Sent </Link>
                           </Button>
                         </Form.Item>
-                        {/* <p><LockOutlined />&nbsp; Your Info is safely secured</p> */}
                       </Form>
                     </Col>
                   </Row>
@@ -187,18 +186,4 @@ const ResetPassword = (props) => {
   );
 };
 
-// const mapStateToProps = ({ auth }) => {
-// 	const { loading, message, showMessage, token, redirect } = auth;
-// 	return { loading, message, showMessage, token, redirect }
-// }
-
-// const mapDispatchToProps = {
-// 	resetpassword,
-// 	showAuthMessage,
-// 	hideAuthMessage,
-// 	showLoading
-// }
-
 export default ResetPassword;
-
-

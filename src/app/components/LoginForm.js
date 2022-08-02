@@ -1,18 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
+
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
-// import { signIn } from 'redux/actions/Auth';
+
 import PropTypes from "prop-types";
-// import {
-// 	showLoading,
-// 	showAuthMessage,
-// 	hideAuthMessage,
-// 	verifiedLogin,
-// } from 'redux/actions/Auth';
+
 import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
-import { height } from "@mui/system";
+
 
 export const LoginForm = (props) => {
   let history = useHistory();
@@ -32,6 +27,21 @@ export const LoginForm = (props) => {
     email: "",
     password: "",
   };
+  
+  const TodoComponent = {
+    position: 'absolute',
+    bottom: 13,
+    left : 192
+  }
+ const forgetstyle = {
+  position: 'relative',
+    left: 238,
+}
+
+ 
+
+
+  
 
   const onLogin = (values) => {
     showLoading();
@@ -39,7 +49,7 @@ export const LoginForm = (props) => {
       email: values.email,
       password: values.password,
     };
-    // localStorage.setItem("emailId",values.email)
+
     const allRequest = {
       request: loginOtpRequest,
       route: history,
@@ -54,11 +64,8 @@ export const LoginForm = (props) => {
           or connect with
         </span>
       </Divider>
-      
     </div>
   );
-
-
 
   return (
     <>
@@ -103,8 +110,8 @@ export const LoginForm = (props) => {
           label={
             <div className="">
               <span>Password</span>
-              <span className="ml-1 justify-content-end">
-                <a href="/auth/forgot-password" className="text-end">
+              <span className=" justify-content-end" >
+                <a href="/auth/forgot-password" className="text-end"   style={forgetstyle}>
                   (Forget Password?)
                 </a>
               </span>
@@ -143,9 +150,11 @@ export const LoginForm = (props) => {
             htmlType="submit"
             block
             loading={loading}
-            style={{ width: "100", lineheight: "0px", padding: "22px" }}
+            className = "py-4"
+         
+           
           >
-            <Link to="/management/CompanyManage" className="button-login">
+            <Link to="/management/CompanyManage" className="button-login" style={TodoComponent} >
               Sign In
             </Link>
           </Button>
@@ -168,43 +177,4 @@ LoginForm.defaultProps = {
   showForgetPassword: false,
 };
 
-// const mapStateToProps = ({ auth }) => {
-// 	const { loading, message, showMessage, token, redirect } = auth;
-// 	return { loading, message, showMessage, token, redirect }
-// }
-
-// const mapDispatchToProps = {
-
-// 	verifiedLogin,
-// 	showAuthMessage,
-// 	showLoading,
-// 	hideAuthMessage,
-// }
-
 export default LoginForm;
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
-
-// export function* verifiedOtp() {
-// 	yield takeEvery(VERIFY, function* ({ payload }) {
-// 		try {
-// 			const user = yield call(JwtAuthService.signupverify, payload.request)
-// 			if (user.success) {
-// 				yield put(verifySuccess(user));
-// 				notification['success']({
-// 					message: 'Registration Successfull',
-// 					description: '',
-// 				});
-// 				payload.route.push('/app/dashboards');
-// 			} else {
-// 				yield put(verifyFailed(user.message));
-// 				notification['error']({
-// 					message: user.message,
-// 					description: '',
-// 				});
-// 			}
-// 		} catch (error) {
-// 			yield put(verifyFailed(error));
-// 		}
-// 	})
-// }

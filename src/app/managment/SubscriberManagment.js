@@ -8,9 +8,7 @@ import FreeSubscription from "./FreeSubscription";
 import { Switch } from "antd";
 const SubscriberManagment = () => {
 const [plans, setPlans] = useState(false);
-const handleTable = (e) => {
-setPlans(!plans);
-};
+
 
 let dispatch = useDispatch();
 const paiduserdata = useSelector((state) => state.paiduserdata);
@@ -110,7 +108,7 @@ return (
       <div class="d-flex justify-content-between">
          <ul className="pagination justify-content-center mt-2">
             <li className="page-item">
-               <a className="page-link text-left previous-keyword" href="#">
+               <a className="page-link text-left previous-keyword" href="/#">
                   <span>
                      <AiOutlineLeft />
                   </span>
@@ -120,14 +118,14 @@ return (
          </ul>
          <ul className="pagination justify-content-center mt-2">
             <li className="page-item">
-               <a className="page-link next-keyword" href="#">
+               <a className="page-link next-keyword" href="/#">
                1 of 5
                </a>
             </li>
          </ul>
          <ul className="pagination justify-content-center mt-2">
             <li className="page-item">
-               <a className="page-link next-keyword" href="#">
+               <a className="page-link next-keyword" href="/#">
                   Next
                   <span>
                      <AiOutlineRight />

@@ -253,6 +253,14 @@ export class Dashboard extends Component {
       ]
     };
     this.setState({visitSaleData: newVisitSaleData, trafficData:newTrafficData} )
+    var c = document.getElementById("status-summary");
+  var ctxy = c.getContext("2d");
+  ctxy.lineTo(300, 150);
+  ctxy.moveTo(0,28)
+  ctxy.bezierCurveTo(0,28,31,7,70,8);
+  ctxy.bezierCurveTo(109,9,313,99,425,90);
+  ctxy.bezierCurveTo(516,82.5,536,55,536,55);
+  ctxy.stroke();
   }
 
 
@@ -260,17 +268,17 @@ export class Dashboard extends Component {
   toggleProBanner() {
     document.querySelector('.proBanner').classList.toggle("hide");
   }
-componentDidMount(){
-  var c = document.getElementById("status-summary");
-  var ctx = c.getContext("2d");
-  ctx.lineTo(300, 150);
-  ctx.moveTo(0,28)
-  ctx.bezierCurveTo(0,28,31,7,70,8);
-  ctx.bezierCurveTo(109,9,313,99,425,90);
-  ctx.bezierCurveTo(516,82.5,536,55,536,55);
-  ctx.stroke();
+// componentDidMount(){
+//   var c = document.getElementById("status-summary");
+//   var ctx = c.getContext("2d");
+//   ctx.lineTo(300, 150);
+//   ctx.moveTo(0,28)
+//   ctx.bezierCurveTo(0,28,31,7,70,8);
+//   ctx.bezierCurveTo(109,9,313,99,425,90);
+//   ctx.bezierCurveTo(516,82.5,536,55,536,55);
+//   ctx.stroke();
 
-}
+// }
   render () {
     return (
       <div>

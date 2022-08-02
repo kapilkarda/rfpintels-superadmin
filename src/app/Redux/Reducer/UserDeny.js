@@ -7,7 +7,7 @@ const initialstate = {
 }
 
 
-const UserDeny = (state=[],action) => {
+const UserDeny = (state = initialstate, action) => {
     switch(action.type) {
         case types.GET_USERS_DENY_PENDING :
             return{

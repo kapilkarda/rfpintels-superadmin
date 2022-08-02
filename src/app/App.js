@@ -8,9 +8,7 @@ import Sidebar from './shared/Sidebar';
 import SettingsPanel from './shared/SettingsPanel';
 import Footer from './shared/Footer';
 import { withTranslation } from "react-i18next";
-import LoginOne from './authentication/login-1';
-import LoginRoute from './LoginRoute';
-import ForgotPassword from './authentication/forgot-password';
+
 
 class App extends Component {
   state = {}

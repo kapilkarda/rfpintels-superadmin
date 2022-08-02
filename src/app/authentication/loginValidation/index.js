@@ -1,6 +1,4 @@
 import React from "react";
-// import { useSelector } from 'react-redux'
-// import { connect } from 'react-redux'
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import {
@@ -8,7 +6,7 @@ import {
   LeftOutlined,
   LockOutlined,
 } from "@ant-design/icons";
-// import { showAuthMessage, showLoading, hideAuthMessage, signIn } from 'redux/actions/Auth';
+
 import { useHistory } from "react-router-dom";
 
 const backgroundURL = "/img/others/Frame.png";
@@ -157,18 +155,6 @@ const LoginValidationForm = (props) => {
   );
 };
 
-// const mapStateToProps = ({ auth }) => {
-// 	const { loading, message, showMessage, token, redirect } = auth;
-// 	return { loading, message, showMessage, token, redirect }
-// }
 
-// const mapDispatchToProps = {
-// 	signIn,
-// 	showAuthMessage,
-// 	hideAuthMessage,
-// 	showLoading
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginValidationForm)
 
 export default LoginValidationForm;

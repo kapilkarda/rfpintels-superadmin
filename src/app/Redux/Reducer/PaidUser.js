@@ -26,7 +26,7 @@ const PaidUser = (state = initialstate, action ) => {
                 loading: false,
             };
 
-        case types.GET_PAID_SUBSCRIPTION :
+        case types.GET_PAID_SUBSCRIPTION_FAIL :
             return{
                 ...state,
                 paiduser: action.payload,

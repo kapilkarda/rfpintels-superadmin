@@ -40,6 +40,12 @@ const LoginValidationForm = (props) => {
 		}
 		props.signIn(allRequest)
 	};
+const TodoComponents = {
+		position: 'absolute',
+		bottom: 13,
+		left : 192
+	  }
+
 
 
 	return (
@@ -100,7 +106,7 @@ const LoginValidationForm = (props) => {
 												</Form.Item>
 												<p>OTP is send in your Registration email ID & Mobile number</p>
 												<Form.Item>
-													<Button loading={loading} type="primary" htmlType="submit" block>{loading ? 'Sending' : 'Continue'}</Button>
+													<Button loading={loading} type="primary" htmlType="submit" block  style={TodoComponents} >{loading ? 'Sending' : 'Continue'}</Button>
 												</Form.Item>
 												<p><LockOutlined />&nbsp; Your Info is safely secured</p>
 											</Form>

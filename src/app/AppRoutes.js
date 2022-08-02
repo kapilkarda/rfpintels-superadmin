@@ -4,9 +4,7 @@ import { AUTH_PREFIX_PATH } from "../../src/configs/AppConfig";
 
 import Spinner from "../app/shared/Spinner";
 import EditCompanyList from "./managment/EditCompanyList";
-import Navbar from "./shared/Navbar";
-import SettingsPanel from "./shared/SettingsPanel";
-import Sidebar from "./shared/Sidebar";
+
 
 // import SubscriberManagment from './managment/SubscriberManagment'
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));

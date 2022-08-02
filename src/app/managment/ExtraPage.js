@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { extraPagedata } from "../Redux/Action/UserAction";
 import axios from "axios";
@@ -9,7 +9,9 @@ const ExtraPage = () => {
 
   useEffect(() => {
     dispatch(extraPagedata());
-  }, dispatch);
+    // eslint-disable-next-line
+
+  }, [dispatch]);
 
   useEffect(() => {
     const emailrequest = {

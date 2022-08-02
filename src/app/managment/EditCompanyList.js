@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
-import { red } from '@mui/material/colors';
-import { height } from '@mui/system';
-// import './index.css';
+
 
 
 export  function EditCompanyList() {

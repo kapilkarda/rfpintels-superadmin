@@ -7,7 +7,6 @@ import {
   PUT_COMPANYLIST_PENDING,
   PUT_USERMANAGMENT_FAIL,
   PUT_USERMANAGMENT_SUCCESS,
-  PUT_USERMANAGMENT_PENDING,
 } from "../Constant/UserConstant";
 
 const initialstate = {
@@ -54,13 +53,13 @@ export const UpdateUserManagment = (
         loading: false,
         updateusermanagment: action.payload,
       };
-      case PUT_USERMANAGMENT_FAIL:
-        return {
-            loading: true,
-            errer: action.payload,
-        }
-        default:
-            return state;
+    case PUT_USERMANAGMENT_FAIL:
+      return {
+        loading: true,
+        errer: action.payload,
+      };
+    default:
+      return state;
   }
 };
 
@@ -71,13 +70,13 @@ export const ExtraPageapi = (state = intialstate, action) => {
         loading: true,
         extrauser: [],
       };
-      break;
+
     case GET_EXTRAPAGE_SUCCESS:
       return {
         loading: false,
         extrauser: action.payload,
       };
-      break;
+
     case GET_EXTRAPAGE_FAIL:
       return {
         loading: true,

@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm from '../../components/LoginForm'
 import { Row, Col } from "antd";
-import { useSelector } from 'react-redux';
+
 
 const backgroundURL = '/img/others/img-17.jpg'
 const backgroundStyle = {
@@ -9,10 +9,10 @@ const backgroundStyle = {
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover'
 }
+const theme = "light";
 
 const LoginTwo = props => {
-	const theme = useSelector(state => state.theme.currentTheme)
-
+	
 	return (
 		<div className={`h-100 ${theme === 'light' ? 'bg-white' : ''}`}>
 			<Row justify="center" className="align-items-stretch h-100">

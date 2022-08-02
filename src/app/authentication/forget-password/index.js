@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+
 import { useSelector } from "react-redux";
 import { Row, Col, Form, Input, Button, Alert } from "antd";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
-// import { showAuthMessage, showLoading, hideAuthMessage, forgetPassword } from 'redux/actions/Auth';
+
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -227,17 +227,7 @@ const ChangePasswords = (props) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => {
-  const { loading, message, showMessage, token, redirect } = auth;
-  return { loading, message, showMessage, token, redirect };
-};
 
-// const mapDispatchToProps = {
-// 	forgetPassword,
-// 	showAuthMessage,
-// 	hideAuthMessage,
-// 	showLoading
-// }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswords)
+
 export default ChangePasswords;

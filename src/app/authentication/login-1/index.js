@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "../../components/LoginForm";
 import { Row, Col } from "antd";
-import { useSelector } from "react-redux";
+
 import { CheckCircleOutlined } from "@ant-design/icons";
 import images2 from "../../../assets/img/others/LOGO.png";
 import images3 from "../../../assets/img/others/Frame.png";
@@ -21,8 +21,6 @@ const LoginOne = (props) => {
       <Row justify="center" className="align-items-stretch h-100">
         <Col xs={0} sm={0} md={0} lg={12}>
           <div className="d-flex flex-column  h-100" style={backgroundStyle}>
-            {/* <img className="h-100" src="/img/others/img-17.jpg" style={{opacity: "0.8", position: "relative"}} alt=""/> */}
-
             <Row justify="center" style={{ position: "absolute" }}>
               <Col xs={0} sm={0} md={0} lg={20}>
                 <div className="text-left mt-5">
@@ -50,13 +48,6 @@ const LoginOne = (props) => {
                 </div>
               </Col>
             </Row>
-            {/* <div className="d-flex justify-content-end pb-4">
-							<div>
-								<a className="text-white" href="/#" onClick={e => e.preventDefault()}>Term & Conditions</a>
-								<span className="mx-2 text-white"> | </span>
-								<a className="text-white" href="/#" onClick={e => e.preventDefault()}>Privacy & Policy</a>
-							</div>
-						</div> */}
           </div>
         </Col>
         <Col xs={20} sm={20} md={24} lg={12}>
@@ -81,27 +72,6 @@ const LoginOne = (props) => {
         </Col>
       </Row>
     </div>
-    // <div className="h-100" style={backgroundStyle}>
-    // 	<div className="container d-flex flex-column justify-content-center h-100">
-    // 		<Row justify="center">
-    // 			<Col xs={20} sm={20} md={20} lg={7}>
-    // 				<Card>
-    // 					<div className="my-4">
-    // 						<div className="text-center">
-    // 							<img className="img-fluid" src={`/img/${theme === 'light' ? 'logo.png': 'logo-white.png'}`} alt="" />
-    // 							<p>Don't have an account yet? <a href="/auth/register-1">Sign Up</a></p>
-    // 						</div>
-    // 						<Row justify="center">
-    // 							<Col xs={24} sm={24} md={20} lg={20}>
-    // 								<LoginForm {...props} />
-    // 							</Col>
-    // 						</Row>
-    // 					</div>
-    // 				</Card>
-    // 			</Col>
-    // 		</Row>
-    // 	</div>
-    // </div>
   );
 };
 

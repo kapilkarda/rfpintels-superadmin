@@ -6,13 +6,7 @@ import {
   LeftOutlined,
   LockOutlined,
 } from "@ant-design/icons";
-// import LoginForm from '../../components/LoginForm';
-// import forgetPassword from '../forget-password';
-import { images1 } from "../../../assets/img/others/Frame.png";
-// import forgetPassword from '../forget-password';
-// import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-// import { showAuthMessage, showLoading, hideAuthMessage, changePassword } from 'redux/actions/Auth';/
-// import { useHistory } from "react-router-dom";
+
 import images3 from "../../../assets/img/others/Frame.png";
 import { useHistory } from "react-router-dom";
 
@@ -23,28 +17,18 @@ const backgroundStyle = {
   opacity: "0.9",
   position: "relative",
 };
+const TodoComponents = {
+  position: 'absolute',
+  bottom: 13,
+  left : 192
+  }
+
 
 const ForgotPassword = (props) => {
   const history = useHistory();
 
-  // const theme = useSelector(state => state.theme.currentTheme)
-  const [form] = Form.useForm();
-  const { showLoading, loading } = props;
 
-  // const onSend = values => {
-  //     showLoading()
-  // 	const passwordRequest = {
-  // 		email: values.email,
-  // 	}
-  // 	const allRequest = {
-  // 		request: passwordRequest,
-  // 		route: history,
-  // 	}
-  //         const token = props.token
-  // 		props.changePassword(allRequest,token)
-
-  // 	console.log("allRequest...",allRequest)
-  // };
+  const {  loading } = props;
 
   const moveToreset = () => {
     history.push("/auth/resetpassword");
@@ -137,8 +121,9 @@ const ForgotPassword = (props) => {
                           block
                           className="py-4"
                           onClick={moveToreset}
+                          
                         >
-                          {loading ? "Sending" : "Continue..."}
+                   <span style={TodoComponents}>   {loading ? "Sending" : "Continue..."}  </span>      
                         </Button>
                       </Form.Item>
                       <p>
@@ -156,16 +141,5 @@ const ForgotPassword = (props) => {
     </div>
   );
 };
-
-// redux/actions/Auth
-
-// const mapDispatchToProps = {
-// 	changePassword,
-// 	showAuthMessage,
-// 	showLoading,
-// 	hideAuthMessage,
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
 
 export default ForgotPassword;
