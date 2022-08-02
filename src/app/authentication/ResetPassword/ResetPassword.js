@@ -4,7 +4,7 @@ import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
 // import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import images3 from "../../../assets/img/others/Frame.png";
 
 const backgroundStyle = {
@@ -25,6 +25,11 @@ const ResetPassword = (props) => {
   const { showLoading, loading } = props;
 
   const history = useHistory();
+
+const RedirectLoginPage = () => {
+  history.push("/auth/login-1")
+}
+
 
   // const theme = useSelector(state => state.theme.currentTheme)
   // console.log( "propssjdfklsjdftheme",theme)
@@ -169,8 +174,9 @@ const ResetPassword = (props) => {
                             htmlType="submit"
                             block
                             className="py-4"
+                            onClick={RedirectLoginPage}
                           >
-                            <Link to="/auth/login-1"  style={TodoComponenting}> Sent </Link>
+                            <span style={TodoComponenting}  > Sent   </span> 
                           </Button>
                         </Form.Item>
                       </Form>

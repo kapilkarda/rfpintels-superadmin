@@ -2,10 +2,10 @@ import React from "react";
 
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
-
+import { useHistory } from "react-router-dom"; 
 import PropTypes from "prop-types";
 
-import { Link, useHistory } from "react-router-dom";
+// import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 
 
@@ -28,6 +28,9 @@ export const LoginForm = (props) => {
     password: "",
   };
   
+
+
+
   const TodoComponent = {
     position: 'absolute',
     bottom: 13,
@@ -38,10 +41,19 @@ export const LoginForm = (props) => {
     left: 238,
 }
 
- 
+// const [email, setEmail] = useState("kkarda@manvish.com");
+// const [password, setpassword] = useState("Kapil@123");
 
 
-  
+
+
+
+ const RedirectSupertadmin = () =>  {
+  history.push ("/management/CompanyManage")
+
+ }
+
+
 
   const onLogin = (values) => {
     showLoading();
@@ -61,7 +73,7 @@ export const LoginForm = (props) => {
     <div>
       <Divider>
         <span className="text-muted font-size-base font-weight-normal">
-          or connect with
+          {/* or connect with */}
         </span>
       </Divider>
     </div>
@@ -102,6 +114,7 @@ export const LoginForm = (props) => {
           <Input
             prefix={<MailOutlined className="text-primary rounded-pill" />}
             className="py-3 "
+
           />
         </Form.Item>
         <Form.Item
@@ -151,12 +164,11 @@ export const LoginForm = (props) => {
             block
             loading={loading}
             className = "py-4"
-         
-           
+             onClick={RedirectSupertadmin}
           >
-            <Link to="/management/CompanyManage" className="button-login" style={TodoComponent} >
-              Sign In
-            </Link>
+            <span  style={TodoComponent} >  Login </span>
+
+     
           </Button>
         </Form.Item>
         {otherSignIn ? renderOtherSignIn : null}
