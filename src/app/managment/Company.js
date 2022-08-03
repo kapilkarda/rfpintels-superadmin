@@ -458,5 +458,3 @@ const Company = ({ data }) => {
   );
 };
 export default Company;
-
-
