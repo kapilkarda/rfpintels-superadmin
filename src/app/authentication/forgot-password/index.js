@@ -1,14 +1,11 @@
-import React from "react";
-import { Row, Col, Form, Input, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Row, Col, Form, Input, Button, notification } from "antd";
 import { MailOutlined } from "@ant-design/icons";
-import {
-  CheckCircleOutlined,
-  LeftOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
-
+import {CheckCircleOutlined,LeftOutlined,LockOutlined} from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
 import images3 from "../../../assets/img/others/Frame.png";
 import { useHistory } from "react-router-dom";
+import { UserForgetAction } from "../../Redux/Action/UserAction";
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -24,15 +21,62 @@ const TodoComponents = {
   }
 
 
+
+
+
+
+
 const ForgotPassword = (props) => {
+  const forgetpsapi = useSelector((state)=>state.userforgetreducer.users);
+  console.log(forgetpsapi, "forgetpsapi")
   const history = useHistory();
+  const dispatch = useDispatch();
+
+
+
+
+  const [email,setEmail] =  useState("")
+  const [state,setState] = useState("")
+
+
+
+const ForgetDataSubmit = () => {
+  if(email){
+    setState(email);
+  console.log(state, "jfuhuhfehfhshf")   
+  dispatch(UserForgetAction(state))
+  }  
+  }
+
+  useEffect(()=>
+  {
+    if(forgetpsapi && forgetpsapi.success===true){
+      // history.push("/auth/resetpassword");
+      openNotification(); 
+    }
+     // eslint-disable-next-line
+   
+
+  },[forgetpsapi,history])
+
+  const openNotification = () => {
+    notification.open({
+      message: 'Reset password Link has been  send',
+      description:
+        'Please check your email',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
+
 
 
   const {  loading } = props;
 
-  const moveToreset = () => {
-    history.push("/auth/resetpassword");
-  };
+  // const moveToreset = () => {
+  //   history.push("/auth/resetpassword");
+  // };
 
   const theme = "light";
 
@@ -92,7 +136,10 @@ const ForgotPassword = (props) => {
                 </div>
                 <Row justify="left">
                   <Col xs={24} sm={24} md={20} lg={24}>
-                    <Form layout="vertical" name="forget-password">
+                    <Form layout="vertical" name="forget-password" 
+                    // o={ForgetDataSubmit}
+                    // onSubmit={ForgetDataSubmit}
+                    >
                       <Form.Item
                         name="email"
                         label="Email Address*"
@@ -102,7 +149,7 @@ const ForgotPassword = (props) => {
                             message: "Please input your email address",
                           },
                           {
-                            type: "email",
+                            type: "manvish",
                             message: "Please enter a validate email!",
                           },
                         ]}
@@ -111,6 +158,10 @@ const ForgotPassword = (props) => {
                           placeholder="Enter email address"
                           prefix={<MailOutlined className="text-primary" />}
                           className="py-3"
+                          name="email"
+                          onChange={(e) => setEmail(e.target.value)}
+                          value={email}
+                      
                         />
                       </Form.Item>
                       <Form.Item>
@@ -120,10 +171,12 @@ const ForgotPassword = (props) => {
                           htmlType="submit"
                           block
                           className="py-4"
-                          onClick={moveToreset}
+                          // onClick={moveToreset}
+                          onClick={ForgetDataSubmit}
                           
                         >
-                   <span style={TodoComponents}>   {loading ? "Sending" : "Continue..."}  </span>      
+                   <span style={TodoComponents} >   {loading ? "Sending" : "Continue..."}  </span>  
+
                         </Button>
                       </Form.Item>
                       <p>

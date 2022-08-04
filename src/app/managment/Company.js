@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useEffect } from "react";
 
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   CompanyDetailsAdded,
@@ -61,6 +62,10 @@ const Company = ({ data }) => {
       capabilityBriefing: capabilityBriefing,
       websites: websites,
     };
+
+
+
+
     console.log("aaa", editdatas);
     dispatch(CompanyDetailsAdded(editdatas));
     setIsOpens(!isPageOpens);
@@ -129,11 +134,13 @@ const Company = ({ data }) => {
                     <td className="text-center">
                       <button
                         type="button"
-                        className="btn btn-secondary comp-edit-btn align-center"
+                        className="btn btn-secondary comp-edit-btn align-center "
                         onClick={() => toggleModals(item)}
+                       
                       >
                         Edit
                       </button>
+
                     </td>
                   </tr>
                 ))
@@ -398,9 +405,12 @@ const Company = ({ data }) => {
                 </div>
               </div>
               <div className="text-right mt-2">
-                <button type="submit" className="btn">
+                <button type="submit" className="btn" 
+                  onClick={handleEditSubmited}
+                >
                   cancel
                 </button>
+                
                 <button
                   type="submit"
                   className="btn btn-info"

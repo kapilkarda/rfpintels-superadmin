@@ -14,6 +14,7 @@ import {
 import { Oval } from "react-loader-spinner";
 import "antd/dist/antd.css";
 
+
 const customStyles = {
   content: {
     top: "50%",
@@ -286,7 +287,7 @@ const UserManagment = () => {
           <div>
             <div>
               <div className="search-field d-none d-md-block">
-                <form className="d-flex align-items-center h-100" action="#">
+                <form className="d-flex align-items-center h-100" action="/#">
                   <div className="input-group">
                     <input
                       type="text"
@@ -580,3 +581,5 @@ const UserManagment = () => {
   );
 };
 export default UserManagment;
+
+

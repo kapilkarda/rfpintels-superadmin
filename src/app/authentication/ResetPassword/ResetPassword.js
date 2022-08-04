@@ -4,8 +4,10 @@ import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
 // import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
-import {  useHistory } from "react-router-dom";
+// import {  useHistory } from "react-router-dom";
 import images3 from "../../../assets/img/others/Frame.png";
+// import { ResetPasswordAction } from "../../Redux/Action/UserAction";
+// import { useDispatch } from "react-redux";
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -20,15 +22,20 @@ const TodoComponenting = {
   left : 192
   } 
 const ResetPassword = (props) => {
+  // const dispatch = useDispatch();
   // console.log( "propssjdfklsjdf",props)
   const [userData, setUserData] = useState({});
-  const { showLoading, loading } = props;
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { loading } = props;
+  console.log(userData, "userdata in component")
+  // const history = useHistory();
 
-  const history = useHistory();
+// const RedirectLoginPage = () => {
+//   history.push("/auth/login-1")
+// }
 
-const RedirectLoginPage = () => {
-  history.push("/auth/login-1")
-}
+
 
 
   // const theme = useSelector(state => state.theme.currentTheme)
@@ -36,36 +43,39 @@ const RedirectLoginPage = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
+    console.log("use effetr run")
     const query = new URLSearchParams(props.location.search);
     const token = query.get("token");
     const userId = query.get("userId");
     const emailId = query.get("emailId");
-    // console.log("Token", token, userId, emailId);
+    console.log("Token ki value", token, userId, emailId);
     setUserData({ token, userId, emailId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(props.location.search, "props.location.search line no 43");
 
   const onSend = (values) => {
-    showLoading();
+      console.log(newPassword, confirmPassword, "data fomr input field")
+    // console.log(values, "values in data")
+    // showLoading();
     // if(newpassword===newpassword){
-    const otpRequest = {
-      // email: props.location.state,
-      // otp: values.otp,
-      newPassword: values.newpassword,
-      confirmPassword: values.confirmpassword,
-      userData: userData,
-    };
-    if (otpRequest.newPassword === otpRequest.confirmPassword) {
-      const allRequest = {
-        request: otpRequest,
-        route: history,
-      };
-
-      props.resetpassword(allRequest);
-    } else {
-      alert("newpassword!=confirmpassword");
-    }
+    // const otpRequest = {
+    //   email: props.location.state,
+    //   otp: values.otp,
+    //   newPassword: values.newpassword,
+    //   confirmPassword: values.confirmpassword,
+    //   userData: userData,
+    // };
+    // if (otpRequest.newPassword === otpRequest.confirmPassword) {
+    //   const allRequest = {
+    //     request: otpRequest,
+    //     route: history,
+    //   };
+    //   dispatch(ResetPasswordAction(allRequest));
+    //   props.resetpassword(allRequest);
+    // } else {
+    //   alert("newpassword!=confirmpassword");
+    // }
 
     // }
   };
@@ -132,10 +142,11 @@ const RedirectLoginPage = () => {
                         form={form}
                         layout="vertical"
                         name="forget-password"
-                        onFinish={onSend}
+                        // onFinish={onSend}
+                        
                       >
                         <Form.Item
-                          name="newpassword"
+                          name="newPassword"
                           label="New password*"
                           rules={[
                             {
@@ -146,6 +157,9 @@ const RedirectLoginPage = () => {
                         >
                           <Input
                             placeholder="Enter your password"
+                            name="newPassword"
+                            value={newPassword}
+                            onChange= {(e) => setNewPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
                           />
@@ -162,6 +176,9 @@ const RedirectLoginPage = () => {
                         >
                           <Input
                             placeholder="Enter confirm password"
+                            name="confirmPassword"
+                            value={confirmPassword}
+                            onChange= {(e) => setConfirmPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
                           />
@@ -174,7 +191,8 @@ const RedirectLoginPage = () => {
                             htmlType="submit"
                             block
                             className="py-4"
-                            onClick={RedirectLoginPage}
+                            // onClick={RedirectLoginPage}
+                            onClick={onSend}
                           >
                             <span style={TodoComponenting}  > Sent   </span> 
                           </Button>

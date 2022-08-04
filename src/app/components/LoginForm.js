@@ -1,21 +1,58 @@
-import React, { useState } from "react";
-
+import React, { useState ,useEffect} from "react";
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import { useDispatch, useSelector } from "react-redux";
+import 'antd/dist/antd.css';
+import {  notification } from 'antd';
 // import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
+// import { useSelector } from "react-redux";
+import { UserLoginAction } from "../Redux/Action/UserAction";
+
+
+
+
+
+
+const openNotification = () => {
+  notification.open({
+  
+    description:
+      'User Login Successfully',
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+};
+
+
+
+const openNotifications = () => {
+  notification.open({
+    message: 'Notification Title',
+    description:
+      'Wrong Password',
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+};
+
+
+
 
 export const LoginForm = (props) => {
+  // console.log(props, "props in the component")
   let history = useHistory();
+  const dispatch =  useDispatch()
 
   const {
     otherSignIn,
     showForgetPassword,
     onForgetPasswordClick,
-    showLoading,
+    // showLoading,
     extra,
     loading,
     showMessage,
@@ -37,29 +74,46 @@ export const LoginForm = (props) => {
     left: 238,
   };
 
+
+const userloginreducers = useSelector((state) =>  state.userloginreducer.user)
+console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreducers")
+
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
+  const [state] = useState("");
 
-  const RedirectSupertadmin = (email, password) => {
-    if (email === "kkarda@manvish.com" && password === "Kapil@123") {
+
+  
+  useEffect(() => {
+
+    if(userloginreducers && userloginreducers.success===true){
       history.push("/management/CompanyManage");
-    } else {
-      alert("incorrect password");
+      openNotification ()
+      
     }
-  };
+    else {
+      openNotifications();  
+    }
+   
+   
+},[userloginreducers,history])
+
+  const RedirectSupertadmin = (state) => {
+   
+    dispatch(UserLoginAction(state))
+    }
+   
 
   const onLogin = (values) => {
-    showLoading();
+    console.log(values, "values in component")
+    // showLoading();
     const loginOtpRequest = {
       email: values.email,
       password: values.password,
     };
+   console.log(loginOtpRequest, "loginOtpRequest in the component")
+   dispatch(UserLoginAction(loginOtpRequest));
 
-    const allRequest = {
-      request: loginOtpRequest,
-      route: history,
-    };
-    props.signIn(allRequest);
   };
 
   const renderOtherSignIn = (
@@ -81,13 +135,14 @@ export const LoginForm = (props) => {
           marginBottom: showMessage ? 20 : 0,
         }}
       >
-        <Alert type="error" showIcon message={message}></Alert>
+        <Alert type="error" showIcon message={message}> </Alert>
       </motion.div>
       <Form
         layout="vertical"
         name="login-form"
         initialValues={initialCredential}
         onFinish={onLogin}
+
       >
         <Form.Item
           name="email"
@@ -100,7 +155,7 @@ export const LoginForm = (props) => {
             },
             {
               type: "email",
-              message: "Please enter a validate email!",
+              message: "Please enter a validate  manvish.com",
             },
           ]}
         >
@@ -168,7 +223,7 @@ export const LoginForm = (props) => {
             block
             loading={loading}
             className="py-4"
-            onClick={() => RedirectSupertadmin(email, password)}
+            onClick={() => RedirectSupertadmin(state)}
           >
             <span style={TodoComponent}> Login </span>
           </Button>

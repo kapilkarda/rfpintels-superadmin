@@ -18,17 +18,21 @@ const ExtraPage = () => {
       email: "hemant12356@manvish.com",
       "password":"12345",
     };
+
     console.log(emailrequest, "emailrequestlksjdfljsdflk");
-    axios
-      .post(
+
+    axios.post(
         "http://rfpintels-services.eastus.cloudapp.azure.com/userservices/api/auth/login",
         emailrequest
       )
+
+
       .then((resp) => {
         console.log(resp, "respsjdflkjsdlkf");
         const token = resp.data.accessToken;
 
         localStorage.setItem("token", token);
+        console.log(token, "token in extrapage")
       });
   });
 

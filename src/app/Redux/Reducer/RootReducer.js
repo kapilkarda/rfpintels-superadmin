@@ -16,6 +16,11 @@ import UserDeny from "./UserDeny";
 import GetAllUserData from "./GetAllUserData";
 import UserRemoveData from "./UserRemoveData";
 import EditManagementUser from "./EditManagementUser";
+import UserLoginReducer from "./UserLoginReducer";
+import UserForgetReducer from "./UserLoginForget";
+
+
+
 
 const RootReducer = combineReducers({
   data: UserReducers,
@@ -32,6 +37,16 @@ const RootReducer = combineReducers({
   getAllUserDatas: GetAllUserData,
   getAllDataRemove: UserRemoveData,
   Editmanagementuser: EditManagementUser,
+
+  userloginreducer: UserLoginReducer,
+  userforgetreducer: UserForgetReducer,
+
+
+
+
+
+
+
 
   // userApproved
 });
