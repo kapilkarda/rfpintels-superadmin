@@ -31,22 +31,70 @@ const ForgotPassword = (props) => {
   console.log(forgetpsapi, "forgetpsapi")
   const history = useHistory();
   const dispatch = useDispatch();
+ 
+  const emailRegex = /^[a-z0-9](\.?[a-z0-9]){5,}@m(anvish)?.com$/
+
+
+  const [email, setEmail] = useState("");
 
 
 
 
-  const [email,setEmail] =  useState("")
-  const [state,setState] = useState("")
+// const ForgetDataSubmit = () => {
+//   if(email){
+//     setState(email);
+//   console.log(state, "jfuhuhfehfhshf") 
+  
+
+//   if (emailRegex.test(ForgetDataSubmit.email)){
+//     // console.log(loginOtpRequest, "loginOtpRequest in the component");
+//     // dispatch(UserLoginAction(loginOtpRequest));
+//     dispatch(UserForgetAction(state))
+//    }
+   
+//    else{
+//     alert("domaine name must be @manvish.com")
+//    }
 
 
 
-const ForgetDataSubmit = () => {
-  if(email){
-    setState(email);
-  console.log(state, "jfuhuhfehfhshf")   
-  dispatch(UserForgetAction(state))
-  }  
-  }
+//   }  
+//   }
+
+  const onLogins = (values) => {
+    console.log("values in component");
+    // showLoading();
+    const forgetOtpRequest = {
+      email: values.email,
+      password: values.password,
+    };
+
+    // console.log(loginOtpRequest, "loginOtpRequest")
+
+       if (emailRegex.test(forgetOtpRequest.email)){
+        // console.log(loginOtpRequest, "loginOtpRequest in the component");
+        dispatch(UserForgetAction(forgetOtpRequest));
+       }
+       
+       else{
+        alert("domaine name must be @manvish.com")
+       }
+    // setAlertMsg(true);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(()=>
   {
@@ -139,6 +187,7 @@ const ForgetDataSubmit = () => {
                     <Form layout="vertical" name="forget-password" 
                     // o={ForgetDataSubmit}
                     // onSubmit={ForgetDataSubmit}
+                    onFinish={onLogins}
                     >
                       <Form.Item
                         name="email"
@@ -172,7 +221,7 @@ const ForgetDataSubmit = () => {
                           block
                           className="py-4"
                           // onClick={moveToreset}
-                          onClick={ForgetDataSubmit}
+                          // onClick={ForgetDataSubmit}
                           
                         >
                    <span style={TodoComponents} >   {loading ? "Sending" : "Continue..."}  </span>  

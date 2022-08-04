@@ -352,6 +352,7 @@ export const CompanyUserList = () => async (dispatch) => {
 export const UserLoginAction = (data) => async (dispatch) => {
   if (data) {
     try {
+      console.log('try');
       dispatch({ type: types.GET_USER_LOGIN_REQUEST });
 
       const res = await axios
@@ -363,6 +364,7 @@ export const UserLoginAction = (data) => async (dispatch) => {
           }
         )
         .then((res) => res.data);
+        console.log('resresres', res);
 
       const token = res.accessToken;
 
@@ -374,10 +376,7 @@ export const UserLoginAction = (data) => async (dispatch) => {
       console.log(error, "error in action file");
       dispatch({
         type: types.GET_USER_LOGIN_FAIL,
-        payload:
-          error.data && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: error.response.status
       });
     }
   }

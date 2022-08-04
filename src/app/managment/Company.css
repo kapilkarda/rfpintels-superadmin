@@ -259,3 +259,25 @@ color: #334d6e;
 /* .companymodal{
 
 } */
+
+
+.btn-secondary:not(.btn-light):focus, .btn-secondary:not(.btn-light):active {
+    /* background: #d8d8d8; */
+    /* border-color: #d8d8d8; */
+}
+
+
+.btn-secondary:focus, .btn-secondary.focus {
+    /* color: #212529; */
+    /* background-color: #c5c5c5; */
+    /* border-color: #bfbfbf; */
+    /* box-shadow: 0 0 0 0.2rem rgb(189 189 190 / 50%); */
+}
+
+.btn:focus {
+    /* color: var(--bs-btn-hover-color); */
+    /* background-color: var(--bs-btn-hover-bg); */
+    /* border-color: var(--bs-btn-hover-border-color); */
+    outline: 0;
+    /* box-shadow: var(--bs-btn-focus-box-shadow); */
+}

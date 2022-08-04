@@ -1,53 +1,19 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Divider, Alert, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import 'antd/dist/antd.css';
-import {  notification } from 'antd';
-// import { Link, useHistory } from "react-router-dom";
+import "antd/dist/antd.css";
 import { motion } from "framer-motion";
-// import { useSelector } from "react-redux";
 import { UserLoginAction } from "../Redux/Action/UserAction";
-
-
-
-
-
-
-const openNotification = () => {
-  notification.open({
-  
-    description:
-      'User Login Successfully',
-    onClick: () => {
-      console.log('Notification Clicked!');
-    },
-  });
-};
-
-
-
-const openNotifications = () => {
-  notification.open({
-    message: 'Notification Title',
-    description:
-      'Wrong Password',
-    onClick: () => {
-      console.log('Notification Clicked!');
-    },
-  });
-};
-
-
-
 
 export const LoginForm = (props) => {
   // console.log(props, "props in the component")
   let history = useHistory();
-  const dispatch =  useDispatch()
-
+  const dispatch = useDispatch();
+ 
+  const emailRegex = /^[a-z0-9](\.?[a-z0-9]){5,}@m(anvish)?.com$/
   const {
     otherSignIn,
     showForgetPassword,
@@ -74,46 +40,62 @@ export const LoginForm = (props) => {
     left: 238,
   };
 
-
-const userloginreducers = useSelector((state) =>  state.userloginreducer.user)
-console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreducers")
+  const userloginreducers = useSelector((state) => state.userloginreducer.user);
+  //const userLoginFailReducers = useSelector((state) => state.userloginreducer.user)
+  console.log(
+    userloginreducers,
+    "userloginreducersuserloginreducersuserloginreducers"
+  );
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [state] = useState("");
+  // const [state] = useState("");
+  const [, setAlertMsg] = useState(false);
 
+  const alertFun = () => {
+    return alert("Incorrect Credentials");
+  };
 
-  
   useEffect(() => {
-
-    if(userloginreducers && userloginreducers.success===true){
+    if (userloginreducers && userloginreducers.success === true) {
+      setAlertMsg(false);
       history.push("/management/CompanyManage");
-      openNotification ()
-      
     }
-    else {
-      openNotifications();  
+    else if (userloginreducers && userloginreducers === 401) {
+      alertFun();
     }
-   
-   
-},[userloginreducers,history])
+  }, [userloginreducers, history]);
 
-  const RedirectSupertadmin = (state) => {
-   
-    dispatch(UserLoginAction(state))
-    }
-   
+  // const RedirectSupertadmin = (state) => {
+  //   console.log ("values in redirect");
+  //   dispatch(UserLoginAction(state));
+
+  // };
+
+ 
+
+
+
 
   const onLogin = (values) => {
-    console.log(values, "values in component")
+    console.log("values in component");
     // showLoading();
     const loginOtpRequest = {
       email: values.email,
       password: values.password,
     };
-   console.log(loginOtpRequest, "loginOtpRequest in the component")
-   dispatch(UserLoginAction(loginOtpRequest));
 
+    console.log(loginOtpRequest, "loginOtpRequest")
+
+       if (emailRegex.test(loginOtpRequest.email)){
+        console.log(loginOtpRequest, "loginOtpRequest in the component");
+        dispatch(UserLoginAction(loginOtpRequest));
+       }
+       
+       else{
+        alert("domaine name must be @manvish.com")
+       }
+    // setAlertMsg(true);
   };
 
   const renderOtherSignIn = (
@@ -126,6 +108,15 @@ console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreduc
     </div>
   );
 
+  // function lsRememberMe() {
+  //   if (rmCheck.checked && emailInput.value !== "") {
+  //     localStorage.username = emailInput.value;
+  //     localStorage.checkbox = rmCheck.value;
+  //   } else {
+  //     localStorage.username = "";
+  //     localStorage.checkbox = "";
+  //   }
+
   return (
     <>
       <motion.div
@@ -135,14 +126,15 @@ console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreduc
           marginBottom: showMessage ? 20 : 0,
         }}
       >
-        <Alert type="error" showIcon message={message}> </Alert>
+        <Alert type="error" showIcon message={message}>
+          {" "}
+        </Alert>
       </motion.div>
       <Form
         layout="vertical"
         name="login-form"
         initialValues={initialCredential}
         onFinish={onLogin}
-
       >
         <Form.Item
           name="email"
@@ -155,7 +147,8 @@ console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreduc
             },
             {
               type: "email",
-              message: "Please enter a validate  manvish.com",
+              pattern: new RegExp(/^[a-z0-9](\.?[a-z0-9]){5,}@m(anvish)?.com$/),
+              message: `your domain must be manvish.com`,
             },
           ]}
         >
@@ -223,7 +216,7 @@ console.log(userloginreducers, "userloginreducersuserloginreducersuserloginreduc
             block
             loading={loading}
             className="py-4"
-            onClick={() => RedirectSupertadmin(state)}
+            // onClick={onLogin}
           >
             <span style={TodoComponent}> Login </span>
           </Button>
@@ -247,4 +240,3 @@ LoginForm.defaultProps = {
 };
 
 export default LoginForm;
-
