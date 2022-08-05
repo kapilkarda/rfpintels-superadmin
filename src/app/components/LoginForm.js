@@ -108,14 +108,12 @@ export const LoginForm = (props) => {
     </div>
   );
 
-  // function lsRememberMe() {
-  //   if (rmCheck.checked && emailInput.value !== "") {
-  //     localStorage.username = emailInput.value;
-  //     localStorage.checkbox = rmCheck.value;
-  //   } else {
-  //     localStorage.username = "";
-  //     localStorage.checkbox = "";
-  //   }
+
+
+
+
+
+
 
   return (
     <>
@@ -169,11 +167,11 @@ export const LoginForm = (props) => {
               <span>Password</span>
               <span className=" justify-content-end">
                 <a
-                  href="/auth/forgot-password"
+                  href="/auth/resetpassword"
                   className="text-end"
                   style={forgetstyle}
                 >
-                  (Forget Password?)
+                  (changePassword)
                 </a>
               </span>
               {showForgetPassword && (
@@ -207,7 +205,7 @@ export const LoginForm = (props) => {
           valuePropName="checked"
           className="text-left"
         >
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox  >Remember me</Checkbox>
         </Form.Item>
         <Form.Item>
           <Button

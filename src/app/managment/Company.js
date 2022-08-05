@@ -39,6 +39,7 @@ const Company = ({ data }) => {
   const [capabilityBriefing, setCapabilityBriefing] = useState("");
   const [websites, setWebsites] = useState("");
   const [userIds, setUserIds] = useState("");
+  
   const toggleModals = (item) => {
     setIsOpens(!isPageOpens);
 

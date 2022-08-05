@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
-// import { resetpassword, showAuthMessage, showLoading, hideAuthMessage } from 'redux/actions/Auth';
-// import {  useHistory } from "react-router-dom";
 import images3 from "../../../assets/img/others/Frame.png";
-// import { ResetPasswordAction } from "../../Redux/Action/UserAction";
-// import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+import { UserChangePasswordAction } from "../../Redux/Action/UserAction";
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -17,67 +15,37 @@ const backgroundStyle = {
   position: "relative",
 };
 const TodoComponenting = {
-  position: 'absolute',
+  position: "absolute",
   bottom: 13,
-  left : 192
-  } 
+  left: 192,
+};
 const ResetPassword = (props) => {
-  // const dispatch = useDispatch();
   // console.log( "propssjdfklsjdf",props)
-  const [userData, setUserData] = useState({});
+
+  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  // const [email, setEmail] = useState("");
   const { loading } = props;
-  console.log(userData, "userdata in component")
-  // const history = useHistory();
 
-// const RedirectLoginPage = () => {
-//   history.push("/auth/login-1")
-// }
+  const dispatch = useDispatch();
 
+  // const   userchangepasswordreducers  =  useSelector ((state) => state.userchangepasswordreducer)
 
+  const adminEmail = localStorage.getItem("email");
+  const email = JSON.parse(adminEmail);
 
+  const PasswordChange = () => {
+    //  if(adminEmailData){
+    const loginOtpRequest = {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+      email,
+    };
+    //  }
 
-  // const theme = useSelector(state => state.theme.currentTheme)
-  // console.log( "propssjdfklsjdftheme",theme)
-  const [form] = Form.useForm();
-
-  useEffect(() => {
-    console.log("use effetr run")
-    const query = new URLSearchParams(props.location.search);
-    const token = query.get("token");
-    const userId = query.get("userId");
-    const emailId = query.get("emailId");
-    console.log("Token ki value", token, userId, emailId);
-    setUserData({ token, userId, emailId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log(props.location.search, "props.location.search line no 43");
-
-  const onSend = (values) => {
-      console.log(newPassword, confirmPassword, "data fomr input field")
-    // console.log(values, "values in data")
-    // showLoading();
-    // if(newpassword===newpassword){
-    // const otpRequest = {
-    //   email: props.location.state,
-    //   otp: values.otp,
-    //   newPassword: values.newpassword,
-    //   confirmPassword: values.confirmpassword,
-    //   userData: userData,
-    // };
-    // if (otpRequest.newPassword === otpRequest.confirmPassword) {
-    //   const allRequest = {
-    //     request: otpRequest,
-    //     route: history,
-    //   };
-    //   dispatch(ResetPasswordAction(allRequest));
-    //   props.resetpassword(allRequest);
-    // } else {
-    //   alert("newpassword!=confirmpassword");
-    // }
-
-    // }
+    dispatch(UserChangePasswordAction(loginOtpRequest));
   };
 
   const theme = "light";
@@ -139,14 +107,32 @@ const ResetPassword = (props) => {
                   <Row>
                     <Col xs={24} sm={24} md={24} lg={16} className="mx-5">
                       <Form
-                        form={form}
                         layout="vertical"
                         name="forget-password"
-                        // onFinish={onSend}
-                        
+                        onFinish={PasswordChange}
                       >
                         <Form.Item
-                          name="newPassword"
+                          label="OldPassword"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your password",
+                            },
+                          ]}
+                        >
+                          {/* <input type="hidden" name="email" value="nisha.singh@manvish.com" 
+                            onChange= {(e) => setEmail(e.target.value)} /> */}
+                          <Input
+                            placeholder="Enter your password"
+                            name="oldPassword"
+                            value={oldPassword}
+                            onChange={(e) => setOldPassword(e.target.value)}
+                            prefix={<MailOutlined className="text-primary" />}
+                            className="py-3"
+                          />
+                        </Form.Item>
+
+                        <Form.Item
                           label="New password*"
                           rules={[
                             {
@@ -159,13 +145,14 @@ const ResetPassword = (props) => {
                             placeholder="Enter your password"
                             name="newPassword"
                             value={newPassword}
-                            onChange= {(e) => setNewPassword(e.target.value)}
+                            onChange={(e) => setNewPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
                           />
                         </Form.Item>
+
                         <Form.Item
-                          name="confirmpassword"
+                          name="conformPassword"
                           label="Confirm Password*"
                           rules={[
                             {
@@ -176,9 +163,9 @@ const ResetPassword = (props) => {
                         >
                           <Input
                             placeholder="Enter confirm password"
-                            name="confirmPassword"
+                            name="conformPassword"
                             value={confirmPassword}
-                            onChange= {(e) => setConfirmPassword(e.target.value)}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
                           />
@@ -191,10 +178,8 @@ const ResetPassword = (props) => {
                             htmlType="submit"
                             block
                             className="py-4"
-                            // onClick={RedirectLoginPage}
-                            onClick={onSend}
                           >
-                            <span style={TodoComponenting}  > Sent   </span> 
+                            <span style={TodoComponenting}> Sent </span>
                           </Button>
                         </Form.Item>
                       </Form>

@@ -17,7 +17,8 @@ import GetAllUserData from "./GetAllUserData";
 import UserRemoveData from "./UserRemoveData";
 import EditManagementUser from "./EditManagementUser";
 import UserLoginReducer from "./UserLoginReducer";
-import UserForgetReducer from "./UserLoginForget";
+import UserChangePasswordReducer from "./UserChangePasswordReducer";
+
 
 
 
@@ -39,7 +40,9 @@ const RootReducer = combineReducers({
   Editmanagementuser: EditManagementUser,
 
   userloginreducer: UserLoginReducer,
-  userforgetreducer: UserForgetReducer,
+  userchangepasswordreducer: UserChangePasswordReducer,
+
+
 
 
 

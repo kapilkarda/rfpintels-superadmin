@@ -52,14 +52,7 @@ class AppRoutes extends Component {
               component={lazy(() => import(`./authentication/login-2`))}
             />
 
-            <Route
-              path={`${AUTH_PREFIX_PATH}/forgot-password`}
-              component={lazy(() => import(`./authentication/forgot-password`))}
-            />
-            <Route
-              path={`${AUTH_PREFIX_PATH}/forget-password`}
-              component={lazy(() => import(`./authentication/forget-password`))}
-            />
+           
             <Route
               path={`${AUTH_PREFIX_PATH}/validation`}
               component={lazy(() => import(`./authentication/validation`))}
