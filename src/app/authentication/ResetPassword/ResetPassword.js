@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { UserChangePasswordAction } from "../../Redux/Action/UserAction";
 // import Search from "antd/lib/transfer/search";
-import { useForm } from 'react-hook-form';
+
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -29,7 +29,7 @@ const ResetPassword = (props) => {
   const [newPassword, setNewPassword] = useState("");
   const [resetpassword , setPasswordReset] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { register} = useForm();
+
   // const [email, setEmail] = useState("");
   const { loading } = props;
 
@@ -141,9 +141,7 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setOldPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                            {...register("message", {
-                              required: "Required",
-                            })}
+                           
                           />
                         </Form.Item>
 
@@ -164,9 +162,7 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setNewPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                            {...register("message", {
-                              required: "Required",
-                            })}
+                          
                           />
                         </Form.Item>
 
@@ -186,9 +182,7 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                            {...register("message", {
-                              required: "Required",
-                            })}
+                        
                            
                           />
                         </Form.Item>
