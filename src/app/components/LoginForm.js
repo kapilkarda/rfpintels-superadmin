@@ -48,9 +48,25 @@ export const LoginForm = (props) => {
   );
 
   const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
-  // const [state] = useState("");
+  const [password, setpassword] = useState("");  
   const [, setAlertMsg] = useState(false);
+
+
+
+function HandleClickRember () {
+  localStorage.setItem("email",email )
+  localStorage.setItem("password",password)
+}
+
+useEffect (() => {
+  if (email & password === true){
+    HandleClickRember()
+
+  }
+   // eslint-disable-next-line
+},[HandleClickRember])
+
+
 
   const alertFun = () => {
     return alert("Incorrect Credentials");
@@ -73,9 +89,6 @@ export const LoginForm = (props) => {
   // };
 
  
-
-
-
 
   const onLogin = (values) => {
     console.log("values in component");
@@ -107,6 +120,10 @@ export const LoginForm = (props) => {
       </Divider>
     </div>
   );
+
+
+
+
 
 
 
@@ -205,7 +222,7 @@ export const LoginForm = (props) => {
           valuePropName="checked"
           className="text-left"
         >
-          <Checkbox  >Remember me</Checkbox>
+          <Checkbox  onClick={HandleClickRember} >Remember me</Checkbox>
         </Form.Item>
         <Form.Item>
           <Button

@@ -1,7 +1,6 @@
 {
   "name": "purple-react-free",
   "version": "1.1.0",
-
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -45,6 +44,7 @@
     "react-dnd-multi-backend": "^3.2.2",
     "react-dnd-touch-backend": "^9.4.0",
     "react-dom": "^16.9.0",
+    "react-hook-form": "^7.34.0",
     "react-i18next": "^11.2.1",
     "react-icons": "^4.4.0",
     "react-images": "^1.0.0",

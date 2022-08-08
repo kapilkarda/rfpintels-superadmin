@@ -1,28 +1,60 @@
-import React, { Component } from 'react';
-import { Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { Trans } from 'react-i18next';
+import React, { Component } from "react";
+import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 class Navbar extends Component {
   toggleOffcanvas() {
-    document.querySelector('.sidebar-offcanvas').classList.toggle('active');
+    document.querySelector(".sidebar-offcanvas").classList.toggle("active");
   }
   toggleRightSidebar() {
-    document.querySelector('.right-sidebar').classList.toggle('open');
+    document.querySelector(".right-sidebar").classList.toggle("open");
   }
-  render () {
+
+  handleClick = () => {
+    window.localStorage.clear();
+  };
+
+
+
+
+  render() {
+    //  let user = JSON.parse(localStorage.getItem("user-info"))
+    //
+
+    // //  console.log(user)
+    //   function Logout() {
+    //     localStorage.clear();
+    //     history.push("/auth/login-1")
+    //   }
+
+
+
     return (
       <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <Link className="navbar-brand brand-logo" to="/"><img src={require('../../assets/images/LOGO.png')} alt="logo" /></Link>
-          <Link className="navbar-brand brand-logo-mini" to="/"><img src={require('../../assets/images/logo-mini.png')} alt="logo" /></Link>
+          <Link className="navbar-brand brand-logo" to="/">
+            <img src={require("../../assets/images/LOGO.png")} alt="logo" />
+          </Link>
+          <Link className="navbar-brand brand-logo-mini" to="/">
+            <img
+              src={require("../../assets/images/logo-mini.png")}
+              alt="logo"
+            />
+          </Link>
         </div>
-        
+
         <div className="navbar-menu-wrapper d-flex align-items-stretch">
-          <button className="navbar-toggler navbar-toggler align-self-center" type="button" onClick={ () => document.body.classList.toggle('sidebar-icon-only') }>
+          <button
+            className="navbar-toggler navbar-toggler align-self-center"
+            type="button"
+            onClick={() => document.body.classList.toggle("sidebar-icon-only")}
+          >
             <span className="mdi mdi-menu"></span>
           </button>
-          <div><h3>{}</h3></div>
+          <div>
+            <h3>{}</h3>
+          </div>
           {/* <div className="search-field d-none d-md-block">
             <form className="d-flex align-items-center h-100" action="#">
               <div className="input-group">
@@ -34,87 +66,124 @@ class Navbar extends Component {
 
           <ul className="navbar-nav navbar-nav-right">
             <li className="nav-item">
-            <div className="input-group-prepend bg-transparent">
-                  <i className="pr-3 border-0 mdi mdi-magnify"></i>
-                </div>
+              <div className="input-group-prepend bg-transparent">
+                <i className="pr-3 border-0 mdi mdi-magnify"></i>
+              </div>
             </li>
-          <li className="nav-item">
+            <li className="nav-item">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link count-indicator">
                   <i className="mdi mdi-bell-outline"></i>
                   <span className="count-symbol bg-danger"></span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu navbar-dropdown preview-list">
-                  <h6 className="p-3 mb-0"><Trans>Notifications</Trans></h6>
+                  <h6 className="p-3 mb-0">
+                    <Trans>Notifications</Trans>
+                  </h6>
                   <div className="dropdown-divider"></div>
-                  <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item
+                    className="dropdown-item preview-item"
+                    onClick={(evt) => evt.preventDefault()}
+                  >
                     <div className="preview-thumbnail">
                       <div className="preview-icon bg-success">
                         <i className="mdi mdi-calendar"></i>
                       </div>
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 className="preview-subject font-weight-normal mb-1"><Trans>Event today</Trans></h6>
+                      <h6 className="preview-subject font-weight-normal mb-1">
+                        <Trans>Event today</Trans>
+                      </h6>
                       <p className="text-gray ellipsis mb-0">
-                      <Trans>Just a reminder that you have an event today</Trans>
+                        <Trans>
+                          Just a reminder that you have an event today
+                        </Trans>
                       </p>
                     </div>
                   </Dropdown.Item>
                   <div className="dropdown-divider"></div>
-                  <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item
+                    className="dropdown-item preview-item"
+                    onClick={(evt) => evt.preventDefault()}
+                  >
                     <div className="preview-thumbnail">
                       <div className="preview-icon bg-warning">
                         <i className="mdi mdi-settings"></i>
                       </div>
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 className="preview-subject font-weight-normal mb-1"><Trans>Settings</Trans></h6>
+                      <h6 className="preview-subject font-weight-normal mb-1">
+                        <Trans>Settings</Trans>
+                      </h6>
                       <p className="text-gray ellipsis mb-0">
-                      <Trans>Update dashboard</Trans>
+                        <Trans>Update dashboard</Trans>
                       </p>
                     </div>
                   </Dropdown.Item>
                   <div className="dropdown-divider"></div>
-                  <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item
+                    className="dropdown-item preview-item"
+                    onClick={(evt) => evt.preventDefault()}
+                  >
                     <div className="preview-thumbnail">
                       <div className="preview-icon bg-info">
                         <i className="mdi mdi-link-variant"></i>
                       </div>
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 className="preview-subject font-weight-normal mb-1"><Trans>Launch Admin</Trans></h6>
+                      <h6 className="preview-subject font-weight-normal mb-1">
+                        <Trans>Launch Admin</Trans>
+                      </h6>
                       <p className="text-gray ellipsis mb-0">
-                      <Trans>New admin wow</Trans>!
+                        <Trans>New admin wow</Trans>!
                       </p>
                     </div>
                   </Dropdown.Item>
                   <div className="dropdown-divider"></div>
-                  <h6 className="p-3 mb-0 text-center cursor-pointer"><Trans>See all notifications</Trans></h6>
+                  <h6 className="p-3 mb-0 text-center cursor-pointer">
+                    <Trans>See all notifications</Trans>
+                  </h6>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
             <li className="nav-item nav-profile">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link">
-                  <div className='border-div'></div>
-                <div className="nav-profile-text">
-                    <p className="mb-1 text-black"><Trans>David Greymaax</Trans></p>
+                  <div className="border-div"></div>
+                  <div className="nav-profile-text">
+                    <p className="mb-1 text-black">
+                      <Trans>David Greymaax</Trans>
+                    </p>
                   </div>
                   <div className="nav-profile-img">
-                    <img src={require("../../assets/images/faces/face1.jpg")} alt="user"/>
+                    <img
+                      src={require("../../assets/images/faces/face1.jpg")}
+                      alt="user"
+                    />
                     <span className="availability-status online"></span>
                   </div>
-                  
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="navbar-dropdown">
-                  <Dropdown.Item href="!#" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item
+                    href="!#"
+                    onClick={(evt) => evt.preventDefault()}
+                  >
                     <i className="mdi mdi-cached mr-2 text-success"></i>
                     <Trans>Activity Log</Trans>
                   </Dropdown.Item>
-                  <Dropdown.Item href="!#" onClick={evt =>evt.preventDefault()}>
-                    <i className="mdi mdi-logout mr-2 text-primary"></i>
-                    <Trans>Signout</Trans>
+                  <Dropdown.Item
+                    href="!#"
+                    onClick={(evt) => evt.preventDefault()}
+                  >
+                    <i className="mdi mdi-logout mr-2 text-primary">
+                      <Trans>
+                        <Link to="/auth/login-1"  onClick={this.handleClick}>
+                          SignOut
+                        </Link>
+
+                      </Trans>
+                    </i>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -169,7 +238,7 @@ class Navbar extends Component {
                 </Dropdown.Menu>
               </Dropdown>
             </li> */}
-           
+
             {/* <li className="nav-item nav-logout d-none d-lg-block">
               <a className="nav-link" href="!#" onClick={event => event.preventDefault()}>
                 <i className="mdi mdi-power"></i>
@@ -181,7 +250,11 @@ class Navbar extends Component {
               </button>
             </li> */}
           </ul>
-          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={this.toggleOffcanvas}>
+          <button
+            className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+            type="button"
+            onClick={this.toggleOffcanvas}
+          >
             <span className="mdi mdi-menu"></span>
           </button>
         </div>
@@ -190,5 +263,6 @@ class Navbar extends Component {
   }
 }
 
-
 export default Navbar;
+
+

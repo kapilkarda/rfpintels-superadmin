@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Row, Col, Form, Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined, LeftOutlined } from "@ant-design/icons";
 import images3 from "../../../assets/img/others/Frame.png";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { UserChangePasswordAction } from "../../Redux/Action/UserAction";
+import Search from "antd/lib/transfer/search";
+
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -21,17 +24,24 @@ const TodoComponenting = {
 };
 const ResetPassword = (props) => {
   // console.log( "propssjdfklsjdf",props)
-
+const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [resetpassword , setPasswordReset] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
   // const [email, setEmail] = useState("");
   const { loading } = props;
 
   const dispatch = useDispatch();
 
-  // const   userchangepasswordreducers  =  useSelector ((state) => state.userchangepasswordreducer)
-
+  const   userchangepasswordreducers  =  useSelector ((state) => state.userchangepasswordreducer);
+  useEffect(()=>{
+    if(userchangepasswordreducers && userchangepasswordreducers.users && userchangepasswordreducers.users.success==true){
+      history.push('/auth/login-1')
+      setPasswordReset(userchangepasswordreducers.users.success)
+    }
+  },[userchangepasswordreducers])
+console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpassword)
   const adminEmail = localStorage.getItem("email");
   const email = JSON.parse(adminEmail);
 
@@ -178,6 +188,7 @@ const ResetPassword = (props) => {
                             htmlType="submit"
                             block
                             className="py-4"
+
                           >
                             <span style={TodoComponenting}> Sent </span>
                           </Button>
@@ -196,3 +207,5 @@ const ResetPassword = (props) => {
 };
 
 export default ResetPassword;
+
+

@@ -367,16 +367,16 @@ export const UserLoginAction = (data) => async (dispatch) => {
           }
         )
         .then((res) => res.data);
-        console.log('resresres', res);
+      
       const email = res.email;
-      console.log(email, "emaijlsdkfj")
+      
       const token = res.accessToken;
-      console.log(token, "token in action file")
+   
       localStorage.setItem("token", token);
-      // localStorage.setItem("email", email);
+     
      localStorage.setItem("email", JSON.stringify(email));
-      console.log(email, "emaijlsdkfj")
-      // JSON.stringify(data)
+     
+    
       dispatch({ type: types.GET_USER_LOGIN_SUCCESS, payload: res });
     } 
     catch (error) {
@@ -390,44 +390,106 @@ export const UserLoginAction = (data) => async (dispatch) => {
 };
 
 
-export const  UserChangePasswordAction = (data) => async(dispatch) => {
-  console.log(data,"fuagfughaua")
 
+export const UserChangePasswordAction = (data) => async (dispatch) => {
   try {
-    console.log(data, 'trytrytry');
-  
-    dispatch({type : types.GET_CHANGEPASSWORD_REQUEST})
-    const token = localStorage.getItem("token");
-    console.log("token", token)
-    const res =  await axios.post(`http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
+    const tokens = localStorage.getItem("token");
+    const res = await axios.post(
+      `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
+      {
+        headers: {
+          Authorization: `Bearer ${tokens}`,
+        },
       }
-      
-    }
-
-    ).then((res) => console.log('resresresfsfafagagag ',res));
+    ).then((res)=>{
+      console.log("jhagfyahfba",res)
+      dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
+    })
    
-  localStorage.setItem("tokencsdffafa", token);
-  console.log('resresresfsfafagagag ',res);
-
-  dispatch ({type : types.GET_CHANGEPASSWORD_SUCCESS})
-
-  }
-
+  } 
+  
   catch (error) {
-    console.log("errrrrrrrrrrrrrrrr")
     dispatch({
-      type: types.GET_USERS_FAIL,
+      type: types.GET_CHANGEPASSWORD_FAILED,
       payload:
         error.data && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
   }
+};
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const  UserChangePasswordAction = (data) => async(dispatch) => {
+//   console.log(data,"fuagfughaua")
+
+//   try {
+//     console.log(data, 'trytrytry');
+  
+//     dispatch({type : types.GET_CHANGEPASSWORD_REQUEST})
+//     const token = localStorage.getItem("token");
+//     console.log("token", token)
+
+//     const res = await axios
+//     .post(
+//       `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,
+//       data,
+//       {
+//         headers: {
+//   Authorization: `Bearer ${token}`,
+//         }
+        
+//       }
+  
+//       ) .then((res) => res.data);
+
+   
+//   localStorage.setItem("tokencsdffafa", token);
+//   console.log('resresresfsfafagagag ',res.data);
+
+//   dispatch ({type : types.GET_CHANGEPASSWORD_SUCCESS})
+
+//   }
+
+//   catch (error) {
+//     console.log("errrrrrrrrrrrrrrrr")
+//     dispatch({
+//       type: types.GET_USERS_FAIL,
+//       payload:
+//         error.data && error.response.data.message
+//           ? error.response.data.message
+//           : error.message,
+//     });
+//   }
+
+// }
+
+
 
 
 

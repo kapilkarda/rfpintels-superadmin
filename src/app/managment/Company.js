@@ -184,7 +184,7 @@ const Company = ({ data }) => {
                       value={address}
                       class="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="enter your email address"
+                      placeholder="Enter Your Email Address"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
@@ -207,7 +207,7 @@ const Company = ({ data }) => {
                       value={duns}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="first name"
+                      placeholder="Enter Your Duns Number" 
                       onChange={(e) => setDuns(e.target.value)}
                     />
                   </div>
@@ -230,7 +230,7 @@ const Company = ({ data }) => {
                       value={cage}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="Last Name"
+                      placeholder="Enter Your Cage Number"
                       onChange={(e) => setCage(e.target.value)}
                     />
                   </div>
@@ -303,7 +303,7 @@ const Company = ({ data }) => {
                       value={corporateCertification}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="Enter your Mobile Number"
+                      placeholder="Enter your  Corporate Certifications Number"
                       onChange={(e) =>
                         setCorporateCertification(e.target.value)
                       }
@@ -353,7 +353,7 @@ const Company = ({ data }) => {
                       value={keyWords}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="enter your title"
+                      placeholder="Enter  Your Keywords "
                       onChange={(e) => setKeyWords(e.target.value)}
                     />
                   </div>
@@ -376,7 +376,7 @@ const Company = ({ data }) => {
                       value={capabilityBriefing}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="Enter your Mobile Number"
+                      placeholder="Enter your   Capability Briefing  Number"
                       onChange={(e) => setCapabilityBriefing(e.target.value)}
                     />
                   </div>
@@ -399,7 +399,7 @@ const Company = ({ data }) => {
                       value={websites}
                       className="form-control"
                       id="exampleFormControlInput1"
-                      placeholder="Enter your cell Number"
+                      placeholder="Enter your Website Name"
                       onChange={(e) => setWebsites(e.target.value)}
                     />
                   </div>
