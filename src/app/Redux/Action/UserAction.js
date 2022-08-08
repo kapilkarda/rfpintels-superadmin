@@ -338,9 +338,7 @@ export const CompanyUserList = () => async (dispatch) => {
       }
     );
     dispatch({ type: types.GET_USERS, payload: res.data });
-  } 
-  
-  catch (error) {
+  } catch (error) {
     dispatch({
       type: types.GET_USERS_FAIL,
       payload:
@@ -353,9 +351,8 @@ export const CompanyUserList = () => async (dispatch) => {
 
 export const UserLoginAction = (data) => async (dispatch) => {
   if (data) {
-    
     try {
-      console.log('try');
+      console.log("try");
       dispatch({ type: types.GET_USER_LOGIN_REQUEST });
 
       const res = await axios
@@ -367,47 +364,44 @@ export const UserLoginAction = (data) => async (dispatch) => {
           }
         )
         .then((res) => res.data);
-      
+
       const email = res.email;
-      
+
       const token = res.accessToken;
-   
+
       localStorage.setItem("token", token);
-     
-     localStorage.setItem("email", JSON.stringify(email));
-     
-    
+
+      localStorage.setItem("email", JSON.stringify(email));
+
       dispatch({ type: types.GET_USER_LOGIN_SUCCESS, payload: res });
-    } 
-    catch (error) {
+    } catch (error) {
       console.log(error, "error in action file");
       dispatch({
         type: types.GET_USER_LOGIN_FAIL,
-        payload: error.response.status
+        payload: error.response.status,
       });
     }
   }
 };
 
-
-
-
 export const UserChangePasswordAction = (data) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
     const tokens = localStorage.getItem("token");
-    await axios.post(`http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
-      {
-        headers: {
-          Authorization: `Bearer ${tokens}`,
-        },
-      }
-    ).then((res)=>{dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
-   })
-   
-  } 
-  
-  catch (error) {
+    await axios
+      .post(
+        `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
+      });
+  } catch (error) {
     dispatch({
       type: types.GET_CHANGEPASSWORD_FAILED,
       payload:
@@ -417,38 +411,3 @@ export const UserChangePasswordAction = (data) => async (dispatch) => {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

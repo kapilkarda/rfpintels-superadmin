@@ -7,8 +7,8 @@ import images3 from "../../../assets/img/others/Frame.png";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { UserChangePasswordAction } from "../../Redux/Action/UserAction";
+// import { useForm } from "react-hook-form";
 // import Search from "antd/lib/transfer/search";
-
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -27,36 +27,61 @@ const ResetPassword = (props) => {
   const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [resetpassword , setPasswordReset] = useState();
+  const [resetpassword, setPasswordReset] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
+  // const { register, handleSubmit, formState: { errors } } = useForm();
+
 
   // const [email, setEmail] = useState("");
   const { loading } = props;
 
   const dispatch = useDispatch();
 
-  const   userchangepasswordreducers  =  useSelector ((state) => state.userchangepasswordreducer);
-  useEffect(()=>{
-    if(userchangepasswordreducers && userchangepasswordreducers.users && userchangepasswordreducers.users.success === true){
-      history.push('/auth/login-1')
-      setPasswordReset(userchangepasswordreducers.users.success)
+  const userchangepasswordreducers = useSelector(
+    (state) => state.userchangepasswordreducer
+  );
+  useEffect(() => {
+    if (
+      userchangepasswordreducers &&
+      userchangepasswordreducers.users &&
+      userchangepasswordreducers.users.success === true
+    ) {
+      history.push("/auth/login-1");
+      setPasswordReset(userchangepasswordreducers.users.success);
     }
-  },[userchangepasswordreducers,history])
-console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpassword)
+  }, [userchangepasswordreducers, history]);
+  console.log(
+    userchangepasswordreducers,
+    "userchangepasswordreducers",
+    resetpassword
+  );
   const adminEmail = localStorage.getItem("email");
   const email = JSON.parse(adminEmail);
 
-  const PasswordChange = () => {
-    //  if(adminEmailData){
-    const loginOtpRequest = {
-      oldPassword: oldPassword,
-      newPassword: newPassword,
-      confirmPassword: confirmPassword,
-      email,
-    };
-    //  }
 
-    dispatch(UserChangePasswordAction(loginOtpRequest));
+
+  const PasswordChange = () => {
+    let regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/
+    //  if(adminEmailData){
+
+
+    if (regularExpression.test(newPassword) && newPassword === confirmPassword) {
+      const loginOtpRequest = {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+        email,
+      };
+      dispatch(UserChangePasswordAction(loginOtpRequest));
+    } 
+    else if (oldPassword === newPassword ) {
+      alert ("old password and new password should not be same")
+    }
+    else {
+      alert ("password does not match")
+    }
+    
+    
   };
 
   const theme = "light";
@@ -121,7 +146,8 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                         layout="vertical"
                         name="forget-password"
                         onFinish={PasswordChange}
-                        // onClick = {handleSubmit}
+                        // // onClick = {handleSubmit}
+                        // // onSubmit={handleSubmit(onSubmit)}
                         // onSubmit={handleSubmit(onSubmit)}
                       >
                         <Form.Item
@@ -133,7 +159,6 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             },
                           ]}
                         >
-                  
                           <Input
                             placeholder="Enter your password"
                             name="oldPassword"
@@ -141,10 +166,9 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setOldPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                           
+                 
                           />
                         </Form.Item>
-
 
                         <Form.Item
                           label="New password*"
@@ -156,13 +180,13 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                           ]}
                         >
                           <Input
-                            placeholder="Enter your password"
+                            placeholder="Enter your New password"
                             name="newPassword"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                          
+                         
                           />
                         </Form.Item>
 
@@ -182,8 +206,7 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
-                        
-                           
+                     
                           />
                         </Form.Item>
 
@@ -194,7 +217,6 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             htmlType="submit"
                             block
                             className="py-4"
-
                           >
                             <span style={TodoComponenting}> Sent </span>
                           </Button>
@@ -213,5 +235,3 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
 };
 
 export default ResetPassword;
-
-
