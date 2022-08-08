@@ -390,25 +390,19 @@ export const UserLoginAction = (data) => async (dispatch) => {
 };
 
 
-
 export const UserChangePasswordAction = (data) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
     const tokens = localStorage.getItem("token");
-    const res = await axios.post(
-      `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
+    const res = await  axios.post(`http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
       {
         headers: {
           Authorization: `Bearer ${tokens}`,
         },
       }
-    ).then((res)=>{
-      console.log("jhagfyahfba",res)
-      dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
-    })
-   
-  } 
-  
+    ) .then((res) => res.data);
+    dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res });
+   }
   catch (error) {
     dispatch({
       type: types.GET_CHANGEPASSWORD_FAILED,
@@ -436,58 +430,58 @@ export const UserChangePasswordAction = (data) => async (dispatch) => {
 
 
 
-
-
-
-
-
-
-
-
-
-// export const  UserChangePasswordAction = (data) => async(dispatch) => {
-//   console.log(data,"fuagfughaua")
-
+// export const UserChangePasswordAction = (data) => async (dispatch) => {
 //   try {
-//     console.log(data, 'trytrytry');
-  
-//     dispatch({type : types.GET_CHANGEPASSWORD_REQUEST})
-//     const token = localStorage.getItem("token");
-//     console.log("token", token)
-
-//     const res = await axios
-//     .post(
-//       `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,
-//       data,
+//     dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
+//     const tokens = localStorage.getItem("token");
+//     const res = await axios.post(
+//       `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
 //       {
 //         headers: {
-//   Authorization: `Bearer ${token}`,
-//         }
-        
+//           Authorization: `Bearer ${tokens}`,
+//         },
 //       }
-  
-//       ) .then((res) => res.data);
-
+//     ).then((res)=>{dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
+//    })
    
-//   localStorage.setItem("tokencsdffafa", token);
-//   console.log('resresresfsfafagagag ',res.data);
-
-//   dispatch ({type : types.GET_CHANGEPASSWORD_SUCCESS})
-
-//   }
-
+//   } 
+  
 //   catch (error) {
-//     console.log("errrrrrrrrrrrrrrrr")
 //     dispatch({
-//       type: types.GET_USERS_FAIL,
+//       type: types.GET_CHANGEPASSWORD_FAILED,
 //       payload:
 //         error.data && error.response.data.message
 //           ? error.response.data.message
 //           : error.message,
 //     });
 //   }
+// };
 
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

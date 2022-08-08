@@ -7,8 +7,8 @@ import images3 from "../../../assets/img/others/Frame.png";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { UserChangePasswordAction } from "../../Redux/Action/UserAction";
-import Search from "antd/lib/transfer/search";
-
+// import Search from "antd/lib/transfer/search";
+import { useForm } from 'react-hook-form';
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(to bottom, rgba(55, 81, 255, 0.7), rgba(55, 81, 255, 0.7)), url(${images3})`,
@@ -24,11 +24,12 @@ const TodoComponenting = {
 };
 const ResetPassword = (props) => {
   // console.log( "propssjdfklsjdf",props)
-const history = useHistory();
+  const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [resetpassword , setPasswordReset] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { register} = useForm();
   // const [email, setEmail] = useState("");
   const { loading } = props;
 
@@ -36,11 +37,11 @@ const history = useHistory();
 
   const   userchangepasswordreducers  =  useSelector ((state) => state.userchangepasswordreducer);
   useEffect(()=>{
-    if(userchangepasswordreducers && userchangepasswordreducers.users && userchangepasswordreducers.users.success==true){
+    if(userchangepasswordreducers && userchangepasswordreducers.users && userchangepasswordreducers.users.success === true){
       history.push('/auth/login-1')
       setPasswordReset(userchangepasswordreducers.users.success)
     }
-  },[userchangepasswordreducers])
+  },[userchangepasswordreducers,history])
 console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpassword)
   const adminEmail = localStorage.getItem("email");
   const email = JSON.parse(adminEmail);
@@ -120,6 +121,8 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                         layout="vertical"
                         name="forget-password"
                         onFinish={PasswordChange}
+                        // onClick = {handleSubmit}
+                        // onSubmit={handleSubmit(onSubmit)}
                       >
                         <Form.Item
                           label="OldPassword"
@@ -130,8 +133,7 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             },
                           ]}
                         >
-                          {/* <input type="hidden" name="email" value="nisha.singh@manvish.com" 
-                            onChange= {(e) => setEmail(e.target.value)} /> */}
+                  
                           <Input
                             placeholder="Enter your password"
                             name="oldPassword"
@@ -139,8 +141,12 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setOldPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
+                            {...register("message", {
+                              required: "Required",
+                            })}
                           />
                         </Form.Item>
+
 
                         <Form.Item
                           label="New password*"
@@ -158,11 +164,13 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setNewPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
+                            {...register("message", {
+                              required: "Required",
+                            })}
                           />
                         </Form.Item>
 
                         <Form.Item
-                          name="conformPassword"
                           label="Confirm Password*"
                           rules={[
                             {
@@ -178,6 +186,10 @@ console.log(userchangepasswordreducers,'userchangepasswordreducers',resetpasswor
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             prefix={<MailOutlined className="text-primary" />}
                             className="py-3"
+                            {...register("message", {
+                              required: "Required",
+                            })}
+                           
                           />
                         </Form.Item>
 
