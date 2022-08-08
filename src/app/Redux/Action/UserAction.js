@@ -390,19 +390,23 @@ export const UserLoginAction = (data) => async (dispatch) => {
 };
 
 
+
+
 export const UserChangePasswordAction = (data) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
     const tokens = localStorage.getItem("token");
-    const res = await  axios.post(`http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
+    await axios.post(`http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
       {
         headers: {
           Authorization: `Bearer ${tokens}`,
         },
       }
-    ) .then((res) => res.data);
-    dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res });
-   }
+    ).then((res)=>{dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
+   })
+   
+  } 
+  
   catch (error) {
     dispatch({
       type: types.GET_CHANGEPASSWORD_FAILED,
@@ -413,49 +417,6 @@ export const UserChangePasswordAction = (data) => async (dispatch) => {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const UserChangePasswordAction = (data) => async (dispatch) => {
-//   try {
-//     dispatch({ type: types.GET_CHANGEPASSWORD_REQUEST });
-//     const tokens = localStorage.getItem("token");
-//     const res = await axios.post(
-//       `http://rfpintels-services.eastus.cloudapp.azure.com/userservices/user/changePassword`,data,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${tokens}`,
-//         },
-//       }
-//     ).then((res)=>{dispatch({ type: types.GET_CHANGEPASSWORD_SUCCESS, payload: res.data });
-//    })
-   
-//   } 
-  
-//   catch (error) {
-//     dispatch({
-//       type: types.GET_CHANGEPASSWORD_FAILED,
-//       payload:
-//         error.data && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,
-//     });
-//   }
-// };
 
 
 
