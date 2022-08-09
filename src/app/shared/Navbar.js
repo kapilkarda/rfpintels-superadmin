@@ -11,11 +11,14 @@ class Navbar extends Component {
     document.querySelector(".right-sidebar").classList.toggle("open");
   }
 
-  handleClick = () => {
-    window.localStorage.clear();
-  };
+  // handleClick = () =>{
+  //   this.email = null;
+  //   this.password = null;
+  //   window. localStorage.setItem('email');
+  //   window.localStorage.removeItem('password');
+   
 
-
+  // };
 
 
   render() {
@@ -178,7 +181,7 @@ class Navbar extends Component {
                   >
                     <i className="mdi mdi-logout mr-2 text-primary">
                       <Trans>
-                        <Link to="/auth/login-1"  onClick={this.handleClick}>
+                        <Link >
                           SignOut
                         </Link>
 
